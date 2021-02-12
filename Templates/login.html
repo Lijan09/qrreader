@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{%block head%}
+<title>Home</title>
+{% endblock %}
+
+{% block content %}
+<body bgcolor = #3d3d3d>
+    <h1 class="welcome"> Welcome, {{name}}</h1><br> 
+        <div class="frame">
+         <div class="info">
+             <div class = "left">
+                <p class="code"> Code: {{code}}</p> <br>
+                <p class="designation"> Designation: {{designation}}</p> <br>
+                <p class="time">Entry Time: {{time}}</p>
+             </div>
+             <div class="vl"></div>
+             <div class = "right">
+                <p class="fee">Tution Fee: Nil</p> <br>
+                <p class="candue">Canteen Due: Nil</p> <br>
+                <p class="cafdue">Cafe Due: Nil</p> <br>
+             </div>
+         </div>
+         <div style = "position:fixed; left:1290px; top:640px;">
+             <a href = {{ url_for("home") }} class="button homepage">Home</a>
+         </div>
+        </div>
+{% endblock %}

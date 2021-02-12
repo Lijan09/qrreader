@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{%block head%}
+<title>Printing</title>
+{% endblock %}
+
+{% block content %}
+    <div style = "color: #ffffff; text-align:center; font-size: 80px;">
+        <p> YOUR DOCUMENT IS BEING PRINTED! </p>
+        <a class="btn" href={{ url_for("home") }}>HOME </a>
+    </div>
+{% endblock %}
