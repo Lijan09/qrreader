@@ -5,7 +5,7 @@ from time import sleep, localtime, strftime
 from random import randint
 from encryptor import encrypt
 import pyqrcode
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 import cv2
 
 app = Flask(__name__)
@@ -31,6 +31,11 @@ def register():
 @app.route("/register", methods=["GET", "POST"])
 def registerdata():
     if request.method == "POST":
+
+        codeSize = (64, 64)
+        busNoFont = ImageFont.truetype('arial.ttf', 50)
+        font = ImageFont.truetype('arial.ttf', 11)
+
         fname = request.form["fname"]
         lname = request.form["lname"]
         code = request.form["code"]
@@ -58,9 +63,60 @@ def registerdata():
         qr = pyqrcode.create(encrypted)
         qr.png("code.png", scale=10)
 
-        image1 = Image.open('code.png')
-        im1 = image1.convert('RGB')
-        im1.save('printing.pdf')
+        # code = Image.open('code.png')
+        # code = code.resize(codeSize)
+
+        # if (d == "001") or (d == "002"):
+        #     image = Image.open('student.png')
+
+        #     draw = ImageDraw.Draw(image)
+
+        #     draw.text((120, 60), "?", (0, 0, 0), font=busNoFont)
+        #     draw.text((35, 121), fname + " " + lname, (0, 0, 0),
+        #               font=ImageFont.truetype('arial.ttf', 14))
+        #     draw.text((74, 144), code, (0, 0, 0), font=font)
+        #     draw.text((89, 166), "[Programme]", (0, 0, 0), font=font)
+        #     draw.text((76, 189), "[Bus Stop]", (0, 0, 0), font=font)
+        #     draw.text((55, 210), "[Cell]", (0, 0, 0), font=font)
+        #     draw.text((70, 233), "August 2050", (0, 0, 0), font=font)
+
+        #     image.paste(code, (27, 246))
+
+        #     image.save('studentSave.png')
+
+        #     image1 = Image.open('studentSave.png')
+        #     im1 = image1.convert('RGB')
+        #     im1.save('printing.pdf')
+
+        # elif (d == "003"):
+        #     image = Image.open('teacher.png')
+
+        #     draw = ImageDraw.Draw(image)
+
+        #     draw.text((52, 180), fname + " " + lname, (0, 0, 0), font=font)
+        #     draw.text((80, 192), "[Faculty]", (0, 0, 0), font=font)
+
+        #     image.paste(code, (27, 205))
+
+        #     image.save('teacherSave.png')
+
+        #     image1 = Image.open('teacherSave.png')
+        #     im1 = image1.convert('RGB')
+        #     im1.save('printing.pdf')
+
+        # elif (d == "004"):
+        #     image = Image.open('admin.png')
+
+        #     draw = ImageDraw.Draw(image)
+
+        #     draw.text((60, 180), fname + " " + lname, (0, 0, 0), font=font)
+        #     draw.text((80, 192), "[Office]", (0, 0, 0), font=font)
+
+        #     image.save('adminSave.png')
+
+        #     image1 = Image.open('adminSave.png')
+        #     im1 = image1.convert('RGB')
+        #     im1.save('printing.pdf')
 
     sleep(0.5)
 
