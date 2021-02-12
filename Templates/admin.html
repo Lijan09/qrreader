@@ -15,10 +15,11 @@
                 <p class="time">Entry Time: {{time}}</p>
              </div>
          </div>
-         <div style = "position:fixed; left:1290px; top:600px;">
-             <a href = {{ url_for("searchlog") }} class="button homepage">Search Log</a>
-             <a href = {{ url_for("delete") }} class="button homepage">Delete</a>
-             <a href = {{ url_for("home") }} class="button homepage">Home</a>
+         <div style = "position:fixed; left:1290px; top:400px;">
+            <a href = {{ url_for("adminprint") }} class="button homepage">Print QR Code</a>
+            <a href = {{ url_for("searchlog") }} class="button homepage">Search Log</a>
+            <a href = {{ url_for("delete") }} class="button homepage">Delete</a>
+            <a href = {{ url_for("home") }} class="button homepage">Home</a>
          </div>
         </div>
 {% endblock %}

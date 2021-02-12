@@ -15,16 +15,16 @@ def makeStudentID():
 
     draw = ImageDraw.Draw(image)
 
-    draw.text((120, 60), "?", (0, 0, 0), font=busNoFont)
-    draw.text((35, 121), "Aashish Kadel", (0, 0, 0),
+    draw.text((156, 102), "?", (0, 0, 0), font=busNoFont)
+    draw.text((64, 165), "Aashish Kadel", (0, 0, 0),
               font=ImageFont.truetype('arial.ttf', 14))
-    draw.text((74, 144), "3513", (0, 0, 0), font=font)
-    draw.text((89, 166), "[Programme]", (0, 0, 0), font=font)
-    draw.text((76, 189), "[Bus Stop]", (0, 0, 0), font=font)
-    draw.text((55, 210), "[Cell]", (0, 0, 0), font=font)
-    draw.text((70, 233), "August 2050", (0, 0, 0), font=font)
+    draw.text((108, 188), "3513", (0, 0, 0), font=font)
+    draw.text((122, 212), "[Programme]", (0, 0, 0), font=font)
+    draw.text((109, 235), "[Bus Stop]", (0, 0, 0), font=font)
+    draw.text((87, 258), "[Cell]", (0, 0, 0), font=font)
+    draw.text((102, 282), "August 2050", (0, 0, 0), font=font)
 
-    image.paste(code, (27, 246))
+    image.paste(code, (59, 298))
 
     image.save('studentSave.png')
 
@@ -36,10 +36,10 @@ def makeTeacherID():
 
     draw = ImageDraw.Draw(image)
 
-    draw.text((52, 180), "Prakash Shrestha", (0, 0, 0), font=font)
-    draw.text((80, 192), "[Faculty]", (0, 0, 0), font=font)
+    draw.text((88, 224), "Prakash Shrestha", (0, 0, 0), font=font)
+    draw.text((109, 236), "[Faculty]", (0, 0, 0), font=font)
 
-    image.paste(code, (27, 205))
+    image.paste(code, (58, 254))
 
     image.save('teacherSave.png')
 
@@ -49,16 +49,20 @@ def makeTeacherID():
 
 
 def makeAdminID():
+    global code
+
     image = Image.open('admin.png')
 
     draw = ImageDraw.Draw(image)
 
-    draw.text((60, 180), "Faisal Ahmed", (0, 0, 0), font=font)
-    draw.text((80, 192), "[Office]", (0, 0, 0), font=font)
+    draw.text((88, 224), "Faisal Ahmed", (0, 0, 0), font=font)
+    draw.text((109, 236), "[Office]", (0, 0, 0), font=font)
+
+    image.paste(code, (58, 254))
 
     image.save('adminSave.png')
 
 
 # makeStudentID()
-makeTeacherID()
-# makeAdminID()
+# makeTeacherID()
+makeAdminID()

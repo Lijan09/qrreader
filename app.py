@@ -11,11 +11,72 @@ import cv2
 app = Flask(__name__)
 time = str
 backwardlines = list
+codeSize = (64, 64)
+busNoFont = ImageFont.truetype('arial.ttf', 50)
+font = ImageFont.truetype('arial.ttf', 11)
 
 
 def printer():
     file_path = "printing.pdf"
     os.startfile(file_path, "print")
+
+
+def makeStudentID(name, code, qrcode):
+
+    image = Image.open('student.png')
+
+    draw = ImageDraw.Draw(image)
+
+    draw.text((156, 102), "?", (0, 0, 0), font=busNoFont)
+    draw.text((64, 165), name, (0, 0, 0),
+              font=ImageFont.truetype('arial.ttf', 14))
+    draw.text((108, 188), code, (0, 0, 0), font=font)
+    draw.text((122, 212), "[Programme]", (0, 0, 0), font=font)
+    draw.text((109, 235), "[Bus Stop]", (0, 0, 0), font=font)
+    draw.text((87, 258), "[Cell]", (0, 0, 0), font=font)
+    draw.text((102, 282), "August 2050", (0, 0, 0), font=font)
+
+    image.paste(qrcode, (59, 298))
+
+    image.save('studentSave.png')
+
+    image1 = Image.open('studentSave.png')
+    im1 = image1.convert('RGB')
+    im1.save('printing.pdf')
+
+
+def makeTeacherID(name, qrcode):
+    image = Image.open('teacher.png')
+
+    draw = ImageDraw.Draw(image)
+
+    draw.text((88, 224), name, (0, 0, 0), font=font)
+    draw.text((109, 236), "[Faculty]", (0, 0, 0), font=font)
+
+    image.paste(qrcode, (58, 254))
+
+    image.save('teacherSave.png')
+
+    image1 = Image.open('teacherSave.png')
+    im1 = image1.convert('RGB')
+    im1.save('printing.pdf')
+
+
+def makeAdminID(name, qrcode):
+    image = Image.open('admin.png')
+
+    draw = ImageDraw.Draw(image)
+
+    draw.text((88, 224), name, (0, 0, 0), font=font)
+    draw.text((109, 236), "[Office]", (0, 0, 0), font=font)
+
+    image.paste(qrcode, (58, 254))
+
+    image.save('adminSave.png')
+
+    image1 = Image.open('adminSave.png')
+    im1 = image1.convert('RGB')
+    im1.save('printing.pdf')
 
 
 @app.route("/")
@@ -56,67 +117,26 @@ def registerdata():
 
             file.write(line + "\n")
 
-        code = str(randint(100, 1000)) + code + \
+        ecode = str(randint(100, 1000)) + code + \
             d + fname.lower() + lname.lower()
-        encrypted = encrypt(code)
+        encrypted = encrypt(ecode)
 
         qr = pyqrcode.create(encrypted)
         qr.png("code.png", scale=10)
 
-        # code = Image.open('code.png')
-        # code = code.resize(codeSize)
+        qrcode = Image.open('code.png')
+        qrcode = qrcode.resize(codeSize)
+        image = None
+        name = fname + " " + lname
 
-        # if (d == "001") or (d == "002"):
-        #     image = Image.open('student.png')
+        if (d == "001") or (d == "002"):
+            makeStudentID(name, code, qrcode)
 
-        #     draw = ImageDraw.Draw(image)
+        elif (d == "003"):
+            makeTeacherID(name, qrcode)
 
-        #     draw.text((120, 60), "?", (0, 0, 0), font=busNoFont)
-        #     draw.text((35, 121), fname + " " + lname, (0, 0, 0),
-        #               font=ImageFont.truetype('arial.ttf', 14))
-        #     draw.text((74, 144), code, (0, 0, 0), font=font)
-        #     draw.text((89, 166), "[Programme]", (0, 0, 0), font=font)
-        #     draw.text((76, 189), "[Bus Stop]", (0, 0, 0), font=font)
-        #     draw.text((55, 210), "[Cell]", (0, 0, 0), font=font)
-        #     draw.text((70, 233), "August 2050", (0, 0, 0), font=font)
-
-        #     image.paste(code, (27, 246))
-
-        #     image.save('studentSave.png')
-
-        #     image1 = Image.open('studentSave.png')
-        #     im1 = image1.convert('RGB')
-        #     im1.save('printing.pdf')
-
-        # elif (d == "003"):
-        #     image = Image.open('teacher.png')
-
-        #     draw = ImageDraw.Draw(image)
-
-        #     draw.text((52, 180), fname + " " + lname, (0, 0, 0), font=font)
-        #     draw.text((80, 192), "[Faculty]", (0, 0, 0), font=font)
-
-        #     image.paste(code, (27, 205))
-
-        #     image.save('teacherSave.png')
-
-        #     image1 = Image.open('teacherSave.png')
-        #     im1 = image1.convert('RGB')
-        #     im1.save('printing.pdf')
-
-        # elif (d == "004"):
-        #     image = Image.open('admin.png')
-
-        #     draw = ImageDraw.Draw(image)
-
-        #     draw.text((60, 180), fname + " " + lname, (0, 0, 0), font=font)
-        #     draw.text((80, 192), "[Office]", (0, 0, 0), font=font)
-
-        #     image.save('adminSave.png')
-
-        #     image1 = Image.open('adminSave.png')
-        #     im1 = image1.convert('RGB')
-        #     im1.save('printing.pdf')
+        elif (d == "004"):
+            makeAdminID(name, qrcode)
 
     sleep(0.5)
 
@@ -255,6 +275,78 @@ def login():
 @app.route("/error")
 def error():
     return render_template("error.html")
+
+
+@app.route("/adminprint")
+def adminprint():
+    return render_template("adminprint.html")
+
+
+@app.route("/adminprint", methods=["GET", "POST"])
+def adminprintdata():
+    if request.method == "POST":
+        givenCode = request.form["code"]
+
+        with open('data.txt', 'r') as file:
+
+            finalarray = []
+            array = []
+            content = file.readlines()
+            code = []
+            x = 0
+
+            row = 0
+            for line in content:
+
+                row += 1
+                array = line.split(",")
+
+                array[-1] = array[-1].strip()
+
+                finalarray.append(array)
+
+            for i in range(len(finalarray)):
+                code.append(finalarray[i][0])
+
+        for x in range(len(code)):
+            if givenCode == code[x]:
+                name = finalarray[x][1]
+                designation = finalarray[x][2]
+                d = designation.lower()
+                codename = name.replace(" ", "")
+
+                if d == "student":
+                    d = "001"
+                elif d == "council":
+                    d = "002"
+                elif d == "teacher":
+                    d = "003"
+                elif d == "admin":
+                    d = "004"
+
+                ecode = str(randint(100, 1000)) + givenCode + \
+                    d + codename.lower()
+                encrypted = encrypt(ecode)
+
+                qr = pyqrcode.create(encrypted)
+                qr.png("code.png", scale=10)
+
+                qrcode = Image.open('code.png')
+                qrcode = qrcode.resize(codeSize)
+                image = None
+
+                if (d == "001") or (d == "002"):
+                    makeStudentID(name, givenCode, qrcode)
+
+                elif (d == "003"):
+                    makeTeacherID(name, qrcode)
+
+                elif (d == "004"):
+                    makeAdminID(name, qrcode)
+
+                return redirect(url_for("printing"))
+
+    return redirect(url_for("error"))
 
 
 @app.route("/searchlog")

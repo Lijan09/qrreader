@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 
 {%block head%}
-<title>Delete Data</title>
+<title>Print QR Code</title>
 {% endblock %}
 
 {% block content %}
         <div class="top">
-        <h1> DELETE DATA </h1>
+        <h1> PRINT QR CODE </h1>
         </div>
         <div class = "form">
         <form action = '/adminprint' method="post">
             <label for="code">Code:</label>
             <input type="text" id="code" name="code"><br><br><br>
             <div style = "position:fixed; left:50px; top:550px;">
-            <input type="submit" class="button submit" value = "Print"><br>
+            <input type="submit" class="button submit" value = "PRINT"><br>
             <a href = {{ url_for( "admin" ) }} class="button homepage">Admin</a><br>
             <a href = {{ url_for( "home" ) }} class="button homepage">Home</a>
         </form>
