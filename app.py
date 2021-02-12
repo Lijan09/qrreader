@@ -10,6 +10,7 @@ import cv2
 
 app = Flask(__name__)
 time = str
+backwardlines = list
 
 
 def printer():
@@ -79,19 +80,49 @@ def printing():
 
 @app.route("/scanner")
 def scanner():
-    global time
+    global time, backwardlines
     qrcodeReader.qrreader()
     if (qrcodeReader.result == "authorized") and (qrcodeReader.loginCode != "004"):
         t = localtime()
         current_time = strftime("%H:%M:%S %A %x", t)
         a = current_time
         time = a[0:9]
+
+        with open("raw_log.txt", "a+") as log:
+            log.write(time.strip() + "," + qrcodeReader.requiredCode + "\n")
+
+        with open('raw_log.txt', 'r+') as textfile:
+            backwardlines = []
+            lines = textfile.readlines()
+            for line in reversed(lines):
+                line = line.strip()
+                backwardlines.append(line)
+
+        with open('log.txt', 'w+') as textfile:
+            for line in backwardlines:
+                textfile.write(line + "\n")
+
         return redirect(url_for("login"))
     elif (qrcodeReader.result == "authorized") and (qrcodeReader.loginCode == "004"):
         t = localtime()
         current_time = strftime("%H:%M:%S %A %x", t)
         a = current_time
         time = a[0:9]
+
+        with open("raw_log.txt", "a+") as log:
+            log.write(time.strip() + "," + qrcodeReader.requiredCode + "\n")
+
+        with open('raw_log.txt', 'r+') as textfile:
+            backwardlines = []
+            lines = textfile.readlines()
+            for line in reversed(lines):
+                line = line.strip()
+                backwardlines.append(line)
+
+        with open('log.txt', 'w+') as textfile:
+            for line in backwardlines:
+                textfile.write(line + "\n")
+
         return redirect(url_for("admin"))
     else:
         return redirect(url_for("error"))
@@ -168,6 +199,76 @@ def login():
 @app.route("/error")
 def error():
     return render_template("error.html")
+
+
+@app.route("/searchlog")
+def searchlog():
+    return render_template("searchlog.html")
+
+
+@app.route("/searchlog", methods=["GET", "POST"])
+def searchLogData():
+    if request.method == "POST":
+        givenCode = request.form["code"]
+
+        with open('log.txt', 'r') as textfile:
+
+            finalarray = []
+            array = []
+            content = textfile.readlines()
+            logcode = []
+
+            row = 0
+            for line in content:
+
+                row += 1
+                array = line.split(",")
+
+                array[-1] = array[-1].strip()
+
+                finalarray.append(array)
+
+            for i in range(len(finalarray)):
+                logcode.append(finalarray[i][1])
+
+        for x in range(len(logcode)):
+            if givenCode == logcode[x]:
+                entrytime = finalarray[x][0]
+                break
+
+        with open("data.txt", 'r') as file:
+
+            array = []
+            finalarray = []
+            content = file.readlines()
+            code = []
+            designation = str
+            name = str
+
+            row = 0
+            for line in content:
+
+                row += 1
+                array = line.split(",")
+
+                array[-1] = array[-1].strip()
+
+                finalarray.append(array)
+
+            for i in range(len(finalarray)):
+                code.append(finalarray[i][0])
+
+            for x in range(len(code)):
+                if givenCode == code[x]:
+                    name = finalarray[x][1]
+                    designation = finalarray[x][2]
+                    break
+
+        logname = name
+        logdesignation = designation
+        logtime = entrytime
+
+        return render_template("searchlog.html", time=logtime, code=logcode, designation=logdesignation, name=logname)
 
 
 @app.route("/delete")
