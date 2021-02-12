@@ -3,15 +3,13 @@ import numpy as np
 from pyzbar.pyzbar import decode
 from encryptor import decrypt
 
-output = str
-data = str
 requiredCode = str
 loginCode = str
 result = str
 
 
 def qrreader():
-    global output, data, requiredCode, loginCode, result
+    global requiredCode, loginCode, result
     isNotScanned = True
     cap = cv2.VideoCapture(0)
     cap.set(3, 680)
