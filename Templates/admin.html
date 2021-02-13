@@ -2,11 +2,18 @@
 
 {%block head%}
 <title>Admin</title>
+<style>
+    a{
+        width: 80px;
+    }
+</style>
+
 {% endblock %}
 
 {% block content %}
 <body bgcolor = #3d3d3d>
-    <h1 class="welcome"> Welcome, {{name}}</h1><br> 
+<h1 class="welcome"> Welcome,</h1><br> 
+    <h2 class="options" style = "position:fixed; left:1111px; top:221px;"> Options: </h2>
         <div class="frame">
          <div class="info">
              <div class = "left">
@@ -15,11 +22,14 @@
                 <p class="time">Entry Time: {{time}}</p>
              </div>
          </div>
-         <div style = "position:fixed; left:1290px; top:400px;">
-            <a href = {{ url_for("adminprint") }} class="button homepage">Print QR Code</a>
-            <a href = {{ url_for("searchlog") }} class="button homepage">Search Log</a>
-            <a href = {{ url_for("delete") }} class="button homepage">Delete</a>
-            <a href = {{ url_for("home") }} class="button homepage">Home</a>
+         <div style = "position:fixed; left:1100px; top:300px;">
+            <a href = {{ url_for("data") }} class="button homepage">Show All Data</a> <br>
+            <a href = {{ url_for("adminprint") }} class="button homepage">Print QR Code</a> <br>
+            <a href = {{ url_for("searchlog") }} class="button homepage">Search Log</a> <br>
+            <a href = {{ url_for("delete") }} class="button homepage">Delete</a> <br>    
+         </div>
+         <div class="homepagebutton" style = "position:fixed; left:68px; top:580px;">
+            <a href = {{ url_for("home") }} class="button homepage">Home</a> <br>
          </div>
         </div>
 {% endblock %}
