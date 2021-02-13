@@ -15,7 +15,8 @@
                 <p class="time">Entry Time: {{time}}</p>
              </div>
          </div>
-         <div style = "position:fixed; left:1290px; top:400px;">
+         <div style = "position:fixed; left:1290px; top:300px;">
+            <a href = {{ url_for("data") }} class="button homepage">View All Data</a>
             <a href = {{ url_for("adminprint") }} class="button homepage">Print QR Code</a>
             <a href = {{ url_for("searchlog") }} class="button homepage">Search Log</a>
             <a href = {{ url_for("delete") }} class="button homepage">Delete</a>
