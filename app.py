@@ -419,6 +419,28 @@ def searchLogData():
         return render_template("searchlog.html", time=logtime, code=logcode, designation=logdesignation, name=logname)
 
 
+@app.route("/data")
+def data():
+
+    with open("data.txt", 'r') as file:
+
+        array = []
+        finalarray = []
+        content = file.readlines()
+        row = 0
+
+        for line in content:
+
+            row += 1
+            array = line.split(",")
+
+            array[-1] = array[-1].strip()
+
+            finalarray.append(array)
+
+    return render_template("data.html", li=finalarray)
+
+
 @app.route("/delete")
 def delete():
     return render_template("delete.html")

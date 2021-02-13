@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{%block head%}
+<title>Data</title>
+{% endblock %}
+
+{% block content %}
+<body bgcolor = #3d3d3d>
+    <h1 class="welcome"> This is all the stored Data</h1><br> 
+        <div class="frame">
+         <table>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Designation</th>
+            </tr>
+            {% for x in li %}
+                <tr>
+                    {% for item in x%}
+                        <td>{{item}}</td>
+                    {% endfor %}
+                </tr>   
+            {% endfor %}
+         </table>
+         <div style = "position:fixed; left:1290px; top:500px;">
+            <a href = {{ url_for("admin") }} class="button homepage">Admin</a>
+            <a href = {{ url_for("home") }} class="button homepage">Home</a>
+         </div>
+        </div>
+{% endblock %}
