@@ -231,6 +231,13 @@ input[type="text"] {
   width: 40%;
 }
 
+.options {
+  padding-top: 34x;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+}
+
 .btn:hover,
 .print-home:hover,
 .login:hover,
