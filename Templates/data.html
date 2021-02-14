@@ -7,9 +7,6 @@
 {% block content %}
 <body bgcolor = #3d3d3d>
     <h1 class="welcome"> AVIALABLE LOGS </h1>
-        <div class="vl1"></div>
-        <div class="vl2"></div>
-        <div class="vl3"></div>
         <div class="frame">
          <table>
             <tr>
@@ -25,7 +22,7 @@
                 </tr>   
             {% endfor %}
          </table>
-         <div style = "position:fixed; left:1290px; top:500px;">
+         <div style = "position:absolute; left:1290px; top:500px;">
             <a href = {{ url_for("admin") }} class="button homepage">Admin</a>
             <a href = {{ url_for("home") }} class="button homepage">Home</a>
          </div>

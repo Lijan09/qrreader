@@ -270,50 +270,27 @@ input:focus,
 }
 
 /* for Display of Logs */
-table{
+table {
   color: white;
   border-collapse: collapse;
-  width: 60%;
+  width: 50%;
+  margin-left: 40px;
 }
 
-th{
+th {
   padding: 15px;
   font-weight: bold;
   font-size: 25px;
   text-align: center;
+  border-bottom: 2px solid white;
+  border-left: 2px solid white;
+  margin-left: 20px;
+  text-align: left;
 }
 
-td{
+td {
+  border-left: 2px solid #ffffff;
   padding: 15px;
   font-size: 18px;
-  text-align: center;
-}
-
-
-.vl1 {
-  border-left: 2px solid white;
-  height: 500px;
-  position: absolute;
-  margin-left: -3px;
-  top: 145px;
-  left: 200px;
-}
-
-.vl2 {
-  border-left: 2px solid white;
-  height: 500px;
-  position: absolute;
-  margin-left: -3px;
-  top: 145px;
-  left: 470px;
-}
-
-.vl3 {
-  border-left: 2px solid white;
-  height: 750px;
-  position: absolute;
-  margin-left: -3px;
-  bottom: 110px;
-  left: 410px;
-  transform: rotate(90deg);
+  text-align: left;
 }
