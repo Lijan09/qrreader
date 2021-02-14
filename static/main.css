@@ -249,3 +249,55 @@ input:focus,
 .select:focus {
   outline: none;
 }
+
+/* for Display of Logs */
+table{
+  color: white;
+}
+
+th{
+  font-weight: bold;
+  font-size: 25px;
+}
+
+th, td {
+  text-align: left;
+  padding-left: 100px;
+}
+
+.vl1 {
+  border-left: 2px solid white;
+  height: 500px;
+  position: absolute;
+  margin-left: -3px;
+  top: 120px;
+  left: 210px;
+}
+
+.vl2 {
+  border-left: 2px solid white;
+  height: 500px;
+  position: absolute;
+  margin-left: -3px;
+  top: 120px;
+  left: 520px;
+}
+
+.vl2 {
+  border-left: 2px solid white;
+  height: 500px;
+  position: absolute;
+  margin-left: -3px;
+  top: 120px;
+  left: 520px;
+}
+
+.vl3 {
+  border-left: 2px solid white;
+  height: 900px;
+  position: absolute;
+  margin-left: -3px;
+  bottom: 55px;
+  left: 480px;
+  transform: rotate(90deg);
+}
