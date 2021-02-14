@@ -97,6 +97,7 @@ body {
   font-size: 30px;
   padding-left: 50px;
   padding-top: 40px;
+  padding-bottom: 23px;
   margin: 8px 0;
   font-weight: bold;
 }
@@ -155,10 +156,14 @@ input[type="text"] {
 
 .submit {
   width: 146px;
+  left: 50px;
+  top: 640px;
 }
 
 .homepage {
   width: 82px;
+  left: 50px;
+  top: 640px;
 }
 
 .welcome {
