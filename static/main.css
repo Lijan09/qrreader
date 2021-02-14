@@ -272,25 +272,31 @@ input:focus,
 /* for Display of Logs */
 table{
   color: white;
+  border-collapse: collapse;
+  width: 60%;
 }
 
 th{
+  padding: 15px;
   font-weight: bold;
   font-size: 25px;
+  text-align: center;
 }
 
-th, td {
-  text-align: left;
-  padding-left: 100px;
+td{
+  padding: 15px;
+  font-size: 18px;
+  text-align: center;
 }
+
 
 .vl1 {
   border-left: 2px solid white;
   height: 500px;
   position: absolute;
   margin-left: -3px;
-  top: 120px;
-  left: 210px;
+  top: 145px;
+  left: 200px;
 }
 
 .vl2 {
@@ -298,25 +304,16 @@ th, td {
   height: 500px;
   position: absolute;
   margin-left: -3px;
-  top: 120px;
-  left: 520px;
-}
-
-.vl2 {
-  border-left: 2px solid white;
-  height: 500px;
-  position: absolute;
-  margin-left: -3px;
-  top: 120px;
-  left: 520px;
+  top: 145px;
+  left: 470px;
 }
 
 .vl3 {
   border-left: 2px solid white;
-  height: 900px;
+  height: 750px;
   position: absolute;
   margin-left: -3px;
-  bottom: 55px;
-  left: 480px;
+  bottom: 110px;
+  left: 410px;
   transform: rotate(90deg);
 }
