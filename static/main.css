@@ -10,6 +10,13 @@ body {
   font-family: futura;
 }
 
+.options {
+  padding-top: 34x;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+}
+
 .container {
   font-family: futura;
   text-align: center;

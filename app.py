@@ -93,10 +93,6 @@ def register():
 def registerdata():
     if request.method == "POST":
 
-        codeSize = (64, 64)
-        busNoFont = ImageFont.truetype('arial.ttf', 50)
-        font = ImageFont.truetype('arial.ttf', 11)
-
         fname = request.form["fname"]
         lname = request.form["lname"]
         code = request.form["code"]
