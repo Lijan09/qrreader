@@ -241,7 +241,7 @@ def login():
 
     log.logdata(qrcodeReader.requiredCode)
 
-    return render_template("login.html", time=log.time, code=log.code, designation=log.designation, name=log.name)
+    return render_template("login.html", time=log.time, code=log.code, designation=log.designation, name=log.name, faculty=log.faculty, cell=log.cell, bno=log.bno, bstop=log.bstop)
 
 
 @app.route("/adminprint")
@@ -314,7 +314,7 @@ def searchLogData():
 
 @app.route("/log")
 def showdata():
-    return render_template("logdata.html", name=log.name, designation=log.designation, code=log.code, time=log.time)
+    return render_template("logdata.html", name=log.name, designation=log.designation, code=log.code, time=log.time, faculty=log.faculty, cell=log.cell, bno=log.bno, bstop=log.bstop)
 
 
 @app.route("/data")
@@ -378,7 +378,9 @@ def deletedata():
             for x in range(len(finalarray)):
                 if deletecode != code[x]:
                     line = finalarray[x][0] + "," + \
-                        finalarray[x][1] + "," + finalarray[x][2]
+                        finalarray[x][1] + "," + finalarray[x][2] + "," + finalarray[x][3] + \
+                        "," + finalarray[x][4] + "," + \
+                        finalarray[x][5] + "," + finalarray[x][6]
                     file.write(line + "\n")
 
     return redirect(url_for("delete"))

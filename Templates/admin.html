@@ -14,17 +14,17 @@
 
 <body bgcolor=#3d3d3d>
     <h1 class="welcome"> Welcome, {{name}} ({{code}})</h1><br>
-    <h1 class="options" style="position:fixed; left:790px; top:150px;"> Options: </h1>
+    <h1 class="options" style="position:fixed; left:710px; top:150px;"> Options: </h1>
     <div class="frame">
-        <div style="position:fixed; left:650px; top:275px;">
+        <div style="position:fixed; left:490px; top:275px;">
             <a href={{ url_for("data") }} class="button homepage">All Data</a> <br><br>
             <a href={{ url_for("adminprint") }} class="button homepage">Print Code</a> <br><br>
             <a href={{ url_for("searchlog") }} class="button homepage">Search Log</a> <br><br>
         </div>
         <div class="line"></div>
-        <div class="homepagebutton" style="position:fixed; left:900px; top:275px;">
+        <div class="homepagebutton" style="position:fixed; left:880px; top:275px;">
             <a href={{ url_for("delete") }} class="button homepage">Delete</a> <br><br>
             <a href={{ url_for("register") }} class="button homepage">Register</a> <br><br>
             <a href={{ url_for("home") }} class="button homepage">Home</a> <br><br>
         </div>
-{% endblock %}
+        {% endblock %}

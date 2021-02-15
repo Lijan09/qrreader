@@ -8,23 +8,20 @@
 
 <body bgcolor=#3d3d3d>
     <h1 class="welcome"> Logs for {{name}}</h1><br>
-    <div class="frame">
+    <div class="frame2">
         <div class="info">
-            <div class="left">
-                <p class="code"> Code: {{code}}</p> <br>
-                <p class="designation"> Designation: {{designation}}</p> <br>
-                <p class="time">Entry Time: {{time}}</p>
-            </div>
-            <div class="vl"></div>
-            <div class="right">
-                <p class="fee">Tution Fee: Nil</p> <br>
-                <p class="candue">Canteen Due: Nil</p> <br>
-                <p class="cafdue">Cafe Due: Nil</p> <br>
-            </div>
+
+            <p class="code"> Code: {{code}}</p>
+            <p class="designation"> Designation: {{designation}}</p>
+            <p class="time">Entry Time: {{time}}</p>
+            <p class="fee">Bus Stop: {{bstop}} ({{bno}})</p>
+            <p class="candue">Faculty: {{faculty}}</p>
+            <p class="cafdue">Cell: {{cell}}</p>
+
         </div>
-        <div style="position:fixed; left:1290px; top:640px;">
+        <div style="position:fixed; left:50px; top:590px;">
+            <a href={{ url_for( "searchlog" ) }} class="button homepage"> Back </a>
             <a href={{ url_for("home") }} class="button homepage">Home</a>
-            <a href={{ url_for( "admin" ) }} class="button homepage"> Back </a>
         </div>
     </div>
 
