@@ -104,6 +104,7 @@ body {
   font-size: 30px;
   padding-left: 50px;
   padding-top: 40px;
+  padding-bottom: 23px;
   margin: 8px 0;
   font-weight: bold;
 }
@@ -162,10 +163,14 @@ input[type="text"] {
 
 .submit {
   width: 146px;
+  left: 50px;
+  top: 640px;
 }
 
 .homepage {
   width: 82px;
+  left: 50px;
+  top: 640px;
 }
 
 .welcome {
@@ -262,4 +267,30 @@ input[type="text"] {
 input:focus,
 .select:focus {
   outline: none;
+}
+
+/* for Display of Logs */
+table {
+  color: white;
+  border-collapse: collapse;
+  width: 50%;
+  margin-left: 40px;
+}
+
+th {
+  padding: 15px;
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+  border-bottom: 2px solid white;
+  border-left: 2px solid white;
+  margin-left: 20px;
+  text-align: left;
+}
+
+td {
+  border-left: 2px solid #ffffff;
+  padding: 15px;
+  font-size: 18px;
+  text-align: left;
 }
