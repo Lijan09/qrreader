@@ -306,7 +306,7 @@ def searchLogData():
 
         log.logdata(givenCode)
 
-        if log.code == "":
+        if log.code != givenCode:
             return render_template("logerror.html")
         else:
             return redirect(url_for("showdata"))
