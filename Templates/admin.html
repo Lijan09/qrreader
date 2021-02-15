@@ -14,24 +14,23 @@
 
 <body bgcolor=#3d3d3d>
     <h1 class="welcome"> Welcome, {{name}} ({{code}})</h1><br>
-    <h2 class="options" style="position:fixed; left:1111px; top:221px;"> Options: </h2>
-    <div class="frame">
+        <br>
+        <h2 class="options"> OPTIONS: </h2>
         <!-- <div class="info">
              <div class = "left">
                 <p class="code"> Code: </p> <br>
-                <p class="designation"> Designation: {{designation}}</p> <br>
+                <p class="designation"> Designation: {{designation}}</p> <br8
                 <p class="time">Entry Time: {{time}}</p>
              </div>
          </div> -->
-        <div style="position:fixed; left:1100px; top:300px;">
-            <a href={{ url_for("data") }} class="button homepage">Show All Data</a> <br>
-            <a href={{ url_for("adminprint") }} class="button homepage">Print QR Code</a> <br>
+        <div class="admin_right" style="position:relative; left:795px; top:75px;">
             <a href={{ url_for("searchlog") }} class="button homepage">Search Log</a> <br>
-            <a href={{ url_for("delete") }} class="button homepage">Delete</a> <br>
-            <a href={{ url_for("register") }} class="button homepage">Register</a> <br>
+            <a href={{ url_for("adminprint") }} class="button homepage">Print QR Code</a> <br>    
         </div>
-        <div class="homepagebutton" style="position:fixed; left:68px; top:580px;">
-            <a href={{ url_for("home") }} class="button homepage">Home</a> <br>
+        <div class="admin_left" style="position:relative; left:355px; bottom:120px;">
+            <a href={{ url_for("delete") }} class="button homepage">Delete Data</a><br>
+            <a href={{ url_for("data") }} class="button homepage">Show All Data</a> <br>
         </div>
-    </div>
-    {% endblock %}
+        <a href={{ url_for("home") }} class="button homepage" style="position:relative; left:584px; bottom:110px;">Home</a> <br>
+        <a href={{ url_for("register") }} class="button homepage" style="position:relative; left:584px; bottom:470px;">Register</a> <br>
+{% endblock %}
