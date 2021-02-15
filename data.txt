@@ -1,5 +1,6 @@
-3513,Aashish Kadel,Student
-3519,Lijan Shrestha,Student
-3613,Mokshyak Amatya,Council
-6842,Faisal Ahmed,Admin
-4686,Aadesh Amatya,Teacher
+3513,Aashish Kadel,Student,+2 Science,Putalisadak,H,9840030767
+3519,Lijan Shrestha,Student,+2 Science,Tahachal,A,9841994411
+3613,Mokshyak Amatya,Council,+2 Science,Imadol,Z,9818684008
+4686,Aadesh Amatya,Teacher,+2 Science,Nil,Nil,9800000000
+6842,Faisal Ahmed,Admin,Admin,Nil,Nil,9800000001
+6801,Raj Kumar Maharjan,Teacher,+2 Science,Nil,Nil,9800000002

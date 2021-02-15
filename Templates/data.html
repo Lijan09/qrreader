@@ -1,30 +1,41 @@
 {% extends "base.html" %}
 
 {%block head%}
-<title>DataLogs</title>
+<title>Data Logs</title>
+<style>
+    .link-button {
+        margin-left: 40px;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
-<body bgcolor = #3d3d3d>
-    <h1 class="welcome"> AVIALABLE LOGS </h1>
-        <div class="frame">
-         <table>
+
+<body bgcolor=#3d3d3d>
+    <h1 class="welcome"> AVIALABLE DATA: </h1>
+    <div class="frame">
+        <table>
             <tr>
                 <th>Code</th>
                 <th>Name</th>
                 <th>Designation</th>
+                <th>Faculty</th>
+                <th>Bus Stop</th>
+                <th>Bus No.</th>
+                <th>Cell No.</th>
             </tr>
             {% for x in li %}
-                <tr>
-                    {% for item in x%}
-                        <td>{{item}}</td>
-                    {% endfor %}
-                </tr>   
+            <tr>
+                {% for item in x%}
+                <td>{{item}}</td>
+                {% endfor %}
+            </tr>
             {% endfor %}
-         </table>
-         <div style = "position:absolute; left:1290px; top:500px;">
-            <a href = {{ url_for("admin") }} class="button homepage">Admin</a>
-            <a href = {{ url_for("home") }} class="button homepage">Home</a>
-         </div>
+        </table>
+        <br><br><br>
+        <div class="link-button">
+            <a href={{ url_for("admin") }} class="button homepage">Back</a>
+            <a href={{ url_for("home") }} class="button homepage">Home</a>
         </div>
-{% endblock %}
+    </div>
+    {% endblock %}

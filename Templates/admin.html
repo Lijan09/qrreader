@@ -3,7 +3,7 @@
 {%block head%}
 <title>Admin</title>
 <style>
-    a{
+    a {
         width: 80px;
     }
 </style>
@@ -11,25 +11,27 @@
 {% endblock %}
 
 {% block content %}
-<body bgcolor = #3d3d3d>
-<h1 class="welcome"> Welcome, {{name}}</h1><br> 
-    <h2 class="options" style = "position:fixed; left:1111px; top:221px;"> Options: </h2>
-        <div class="frame">
-         <div class="info">
+
+<body bgcolor=#3d3d3d>
+    <h1 class="welcome"> Welcome, {{name}} ({{code}})</h1><br>
+    <h2 class="options" style="position:fixed; left:1111px; top:221px;"> Options: </h2>
+    <div class="frame">
+        <!-- <div class="info">
              <div class = "left">
-                <p class="code"> Code: {{code}}</p> <br>
+                <p class="code"> Code: </p> <br>
                 <p class="designation"> Designation: {{designation}}</p> <br>
                 <p class="time">Entry Time: {{time}}</p>
              </div>
-         </div>
-         <div style = "position:fixed; left:1100px; top:300px;">
-            <a href = {{ url_for("data") }} class="button homepage">Show All Data</a> <br>
-            <a href = {{ url_for("adminprint") }} class="button homepage">Print QR Code</a> <br>
-            <a href = {{ url_for("searchlog") }} class="button homepage">Search Log</a> <br>
-            <a href = {{ url_for("delete") }} class="button homepage">Delete</a> <br>    
-         </div>
-         <div class="homepagebutton" style = "position:fixed; left:68px; top:580px;">
-            <a href = {{ url_for("home") }} class="button homepage">Home</a> <br>
-         </div>
+         </div> -->
+        <div style="position:fixed; left:1100px; top:300px;">
+            <a href={{ url_for("data") }} class="button homepage">Show All Data</a> <br>
+            <a href={{ url_for("adminprint") }} class="button homepage">Print QR Code</a> <br>
+            <a href={{ url_for("searchlog") }} class="button homepage">Search Log</a> <br>
+            <a href={{ url_for("delete") }} class="button homepage">Delete</a> <br>
+            <a href={{ url_for("register") }} class="button homepage">Register</a> <br>
         </div>
-{% endblock %}
+        <div class="homepagebutton" style="position:fixed; left:68px; top:580px;">
+            <a href={{ url_for("home") }} class="button homepage">Home</a> <br>
+        </div>
+    </div>
+    {% endblock %}

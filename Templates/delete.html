@@ -5,17 +5,17 @@
 {% endblock %}
 
 {% block content %}
-        <div class="top">
-        <h1> DELETE DATA </h1>
-        </div>
-        <div class = "form">
-        <form action = '/delete' method="post">
-            <label for="code">Code:</label>
-            <input type="text" id="code" name="code"><br><br><br>
-            <div style = "position:fixed; left:50px; top:550px;">
-            <input type="submit" class="button submit" value = "Delete"><br>
-            <a href = {{ url_for( "admin" ) }} class="button homepage">Admin</a><br>
-            <a href = {{ url_for( "home" ) }} class="button homepage">Home</a>
-        </form>
-        </div>
+<div class="top">
+    <h1> DELETE DATA </h1>
+</div>
+<div class="form">
+    <form action='/delete' method="post">
+        <label for="code">Code:</label>
+        <input type="text" id="code" name="code"><br><br><br>
+        <div style="position:fixed; left:50px; top:550px;">
+            <input type="submit" class="button submit" value="Delete"><br>
+            <a href={{ url_for( "admin" ) }} class="button homepage">Back</a><br>
+            <a href={{ url_for( "home" ) }} class="button homepage">Home</a>
+    </form>
+</div>
 {% endblock %}

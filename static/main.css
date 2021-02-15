@@ -128,13 +128,25 @@ input[type="text"] {
 }
 
 #code {
-  width: 350px;
+  width: 385px;
+}
+
+#bno {
+  width: 50px;
+}
+
+#bstop {
+  width: 150px;
+}
+
+#cell {
+  width: 355px;
 }
 
 .select {
   padding-top: 20px;
   padding-left: 10px;
-  width: 20%;
+  width: 15%;
   border: solid 3px #ffffff;
   padding: 16px 20px;
   border-radius: 4px;

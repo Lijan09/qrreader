@@ -2,31 +2,53 @@
 
 {%block head%}
 <title>Sign Up</title>
+<style>
+    .right {
+        margin: 0;
+        position: absolute;
+        top: 23.5%;
+        left: 56%;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
-        <div class="top">
-        <h1> SIGN UP </h1>
+<div class="top">
+    <h1> SIGN UP </h1>
+</div>
+<div class="form">
+    <form action='/register' method="post">
+        <label for="fname">First name:</label>
+        <input type="text" id="fname" name="fname"><br><br><br>
+        <label for="lname">Last name:</label>
+        <input type="text" id="lname" name="lname"><br><br><br>
+        <label for="designation">Designation:</label>
+        <select name="designation" class="select">
+            <option value="Student">Student</option>
+            <option value="Council">Council</option>
+            <option value="Teacher">Teacher</option>
+            <option value="Admin">Admin</option>
+        </select>
+        <select name="faculty" class="select">
+            <option value="+2 Science">+2 Science</option>
+            <option value="+2 Management">+2 Management</option>
+            <option value="A Levels">A levels</option>
+            <option value="Admin">Admin</option>
+        </select><br><br><br>   
+        <div class="right">
+            <label for="code">Code:</label>
+            <input type="text" id="code" name="code"><br><br><br>
+            <label for="lname">Bus Stop:</label>
+            <input type="text" id="bstop" name="bstop">
+            <label for="lname">Bus No.:</label>
+            <input type="text" id="bno" name="bno"><br><br><br>
+            <label for="code">Cell no.:</label>
+            <input type="text" id="cell" name="cell"><br><br><br>
         </div>
-        <div class = "form">
-            <form action = '/register' method="post">
-                <label for="fname">First name:</label>
-                <input type="text" id="fname" name="fname"><br><br><br>
-                <label for="lname">Last name:</label>
-                <input type="text" id="lname" name="lname"><br><br><br>
-                <label for="code">Code:</label>
-                <input type="text" id="code" name="code"><br><br><br>
-                <label for="designation">Designation:</label>
-                <select name="designation" class="select">
-                    <option value="Student">Student</option>
-                    <option value="Council">Council</option>
-                    <option value="Teacher">Teacher</option>
-                    <option value="Admin">Admin</option>
-                </select><br> <br>
-                <div>
-                    <input type="submit" class="button submit" value = "Submit">
-                    <a href = {{ url_for( "home" ) }} class="button homepage">Home</a>
-                </div>
-            </form>
+        <div>
+            <input type="submit" class="button submit" value="Submit">
+            <a href={{ url_for( "admin" ) }} class="button homepage"> Back </a>
         </div>
+    </form>
+</div>
 {% endblock %}

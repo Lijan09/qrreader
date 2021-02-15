@@ -7,6 +7,7 @@ from encryptor import encrypt
 import pyqrcode
 from PIL import Image, ImageDraw, ImageFont
 import cv2
+import log
 
 app = Flask(__name__)
 time = str
@@ -21,19 +22,19 @@ def printer():
     os.startfile(file_path, "print")
 
 
-def makeStudentID(name, code, qrcode):
+def makeStudentID(name, code, qrcode, bno, faculty, bstop, cell):
 
     image = Image.open('student.png')
 
     draw = ImageDraw.Draw(image)
 
-    draw.text((156, 102), "?", (0, 0, 0), font=busNoFont)
+    draw.text((156, 102), bno, (0, 0, 0), font=busNoFont)
     draw.text((64, 165), name, (0, 0, 0),
               font=ImageFont.truetype('arial.ttf', 14))
     draw.text((108, 188), code, (0, 0, 0), font=font)
-    draw.text((122, 212), "[Programme]", (0, 0, 0), font=font)
-    draw.text((109, 235), "[Bus Stop]", (0, 0, 0), font=font)
-    draw.text((87, 258), "[Cell]", (0, 0, 0), font=font)
+    draw.text((122, 212), faculty, (0, 0, 0), font=font)
+    draw.text((109, 235), bstop, (0, 0, 0), font=font)
+    draw.text((87, 258), cell, (0, 0, 0), font=font)
     draw.text((102, 282), "August 2050", (0, 0, 0), font=font)
 
     image.paste(qrcode, (59, 298))
@@ -45,13 +46,13 @@ def makeStudentID(name, code, qrcode):
     im1.save('printing.pdf')
 
 
-def makeTeacherID(name, qrcode):
+def makeTeacherID(name, qrcode, faculty):
     image = Image.open('teacher.png')
 
     draw = ImageDraw.Draw(image)
 
     draw.text((88, 224), name, (0, 0, 0), font=font)
-    draw.text((109, 236), "[Faculty]", (0, 0, 0), font=font)
+    draw.text((109, 236), faculty, (0, 0, 0), font=font)
 
     image.paste(qrcode, (58, 254))
 
@@ -68,7 +69,7 @@ def makeAdminID(name, qrcode):
     draw = ImageDraw.Draw(image)
 
     draw.text((88, 224), name, (0, 0, 0), font=font)
-    draw.text((109, 236), "[Office]", (0, 0, 0), font=font)
+    draw.text((109, 236), "[Admin Office]", (0, 0, 0), font=font)
 
     image.paste(qrcode, (58, 254))
 
@@ -97,7 +98,22 @@ def registerdata():
         lname = request.form["lname"]
         code = request.form["code"]
         designation = request.form["designation"]
+        faculty = request.form["faculty"]
+        bno = request.form["bno"]
+        bstop = request.form["bstop"]
+        cell = request.form["cell"]
         d = designation.lower()
+
+        if bno == "":
+            bno = "Nil"
+
+        if bstop == "":
+            bstop = "Nil"
+
+        log.logdata(code)
+
+        if log.code == code:
+            return render_template("codeerror.html")
 
         if d == "student":
             d = "001"
@@ -109,7 +125,8 @@ def registerdata():
             d = "004"
 
         with open('data.txt', 'a+') as file:
-            line = code + "," + fname + " " + lname + "," + designation
+            line = code + "," + fname + " " + lname + "," + \
+                designation + "," + faculty + "," + bstop + "," + bno + "," + cell
 
             file.write(line + "\n")
 
@@ -126,10 +143,10 @@ def registerdata():
         name = fname + " " + lname
 
         if (d == "001") or (d == "002"):
-            makeStudentID(name, code, qrcode)
+            makeStudentID(name, code, qrcode, bno, faculty, bstop, cell)
 
         elif (d == "003"):
-            makeTeacherID(name, qrcode)
+            makeTeacherID(name, qrcode, faculty)
 
         elif (d == "004"):
             makeAdminID(name, qrcode)
@@ -176,6 +193,16 @@ def scanner():
 
         return redirect(url_for("login"))
     elif (qrcodeReader.result == "authorized") and (qrcodeReader.loginCode == "004"):
+        return render_template("admincheck.html")
+    else:
+        return render_template("error.html")
+
+
+@app.route("/adminscanner")
+def adminscanner():
+    global time, backwardlines
+    qrcodeReader.qrreader()
+    if (qrcodeReader.result == "authorized") and (qrcodeReader.loginCode == "004"):
         t = localtime()
         current_time = strftime("%H:%M:%S %A %x", t)
         a = current_time
@@ -196,81 +223,28 @@ def scanner():
                 textfile.write(line + "\n")
 
         return redirect(url_for("admin"))
+    elif (qrcodeReader.result == "authorized") and (qrcodeReader.loginCode != "004"):
+        return render_template("adminerror.html")
     else:
-        return redirect(url_for("error"))
+        return render_template("error.html")
 
 
 @app.route("/admin")
 def admin():
     global time
 
-    with open("data.txt") as file:
+    log.logdata(qrcodeReader.requiredCode)
 
-        finalarray = []
-        array = []
-        content = file.readlines()
-        code = []
-        designation = str
-        name = str
-
-        row = 0
-        for line in content:
-
-            row += 1
-            array = line.split(",")
-
-            array[-1] = array[-1].strip()
-
-            finalarray.append(array)
-
-        for i in range(len(finalarray)):
-            code.append(finalarray[i][0])
-
-        for x in range(len(code)):
-            if qrcodeReader.requiredCode == code[x]:
-                name = finalarray[x][1]
-                designation = finalarray[x][2]
-
-    return render_template("admin.html", time=time, code=qrcodeReader.requiredCode, designation=designation, name=name)
+    return render_template("admin.html", code=log.code, name=log.name)
 
 
 @app.route("/home")
 def login():
     global time
 
-    with open("data.txt") as file:
+    log.logdata(qrcodeReader.requiredCode)
 
-        finalarray = []
-        array = []
-        content = file.readlines()
-        code = []
-        designation = str
-        name = str
-
-        row = 0
-        for line in content:
-
-            row += 1
-            array = line.split(",")
-
-            array[-1] = array[-1].strip()
-
-            finalarray.append(array)
-
-        for i in range(len(finalarray)):
-            code.append(finalarray[i][0])
-
-        for x in range(len(code)):
-            if qrcodeReader.requiredCode == code[x]:
-                name = finalarray[x][1]
-                designation = finalarray[x][2]
-
-    return render_template("login.html", time=time, code=qrcodeReader.requiredCode, designation=designation, name=name)
-
-
-@app.route("/error")
-def error():
-    return render_template("error.html")
+    return render_template("login.html", time=log.time, code=log.code, designation=log.designation, name=log.name)
 
 
 @app.route("/adminprint")
@@ -283,66 +257,44 @@ def adminprintdata():
     if request.method == "POST":
         givenCode = request.form["code"]
 
-        with open('data.txt', 'r') as file:
+        log.logdata(givenCode)
 
-            finalarray = []
-            array = []
-            content = file.readlines()
-            code = []
-            x = 0
+        d = log.designation.lower()
+        codename = log.name.replace(" ", "")
 
-            row = 0
-            for line in content:
+        if d == "student":
+            d = "001"
+        elif d == "council":
+            d = "002"
+        elif d == "teacher":
+            d = "003"
+        elif d == "admin":
+            d = "004"
 
-                row += 1
-                array = line.split(",")
+        ecode = str(randint(100, 1000)) + givenCode + \
+            d + codename.lower()
+        encrypted = encrypt(ecode)
 
-                array[-1] = array[-1].strip()
+        qr = pyqrcode.create(encrypted)
+        qr.png("code.png", scale=10)
 
-                finalarray.append(array)
+        qrcode = Image.open('code.png')
+        qrcode = qrcode.resize(codeSize)
+        image = None
 
-            for i in range(len(finalarray)):
-                code.append(finalarray[i][0])
+        if (d == "001") or (d == "002"):
+            makeStudentID(log.name, givenCode, qrcode, log.bno,
+                          log.faculty, log.bstop, log.cell)
 
-        for x in range(len(code)):
-            if givenCode == code[x]:
-                name = finalarray[x][1]
-                designation = finalarray[x][2]
-                d = designation.lower()
-                codename = name.replace(" ", "")
+        elif (d == "003"):
+            makeTeacherID(log.name, qrcode, log.faculty)
 
-                if d == "student":
-                    d = "001"
-                elif d == "council":
-                    d = "002"
-                elif d == "teacher":
-                    d = "003"
-                elif d == "admin":
-                    d = "004"
+        elif (d == "004"):
+            makeAdminID(log.name, qrcode)
 
-                ecode = str(randint(100, 1000)) + givenCode + \
-                    d + codename.lower()
-                encrypted = encrypt(ecode)
+        return redirect(url_for("printing"))
 
-                qr = pyqrcode.create(encrypted)
-                qr.png("code.png", scale=10)
-
-                qrcode = Image.open('code.png')
-                qrcode = qrcode.resize(codeSize)
-                image = None
-
-                if (d == "001") or (d == "002"):
-                    makeStudentID(name, givenCode, qrcode)
-
-                elif (d == "003"):
-                    makeTeacherID(name, qrcode)
-
-                elif (d == "004"):
-                    makeAdminID(name, qrcode)
-
-                return redirect(url_for("printing"))
-
-    return redirect(url_for("error"))
+    return render_template("error.html")
 
 
 @app.route("/searchlog")
@@ -355,64 +307,17 @@ def searchLogData():
     if request.method == "POST":
         givenCode = request.form["code"]
 
-        with open('log.txt', 'r') as textfile:
+        log.logdata(givenCode)
 
-            finalarray = []
-            array = []
-            content = textfile.readlines()
-            logcode = []
+        if log.code == "":
+            return render_template("logerror.html")
+        else:
+            return redirect(url_for("showdata"))
 
-            row = 0
-            for line in content:
 
-                row += 1
-                array = line.split(",")
-
-                array[-1] = array[-1].strip()
-
-                finalarray.append(array)
-
-            for i in range(len(finalarray)):
-                logcode.append(finalarray[i][1])
-
-        for x in range(len(logcode)):
-            if givenCode == logcode[x]:
-                entrytime = finalarray[x][0]
-                break
-
-        with open("data.txt", 'r') as file:
-
-            array = []
-            finalarray = []
-            content = file.readlines()
-            code = []
-            designation = str
-            name = str
-
-            row = 0
-            for line in content:
-
-                row += 1
-                array = line.split(",")
-
-                array[-1] = array[-1].strip()
-
-                finalarray.append(array)
-
-            for i in range(len(finalarray)):
-                code.append(finalarray[i][0])
-
-            for x in range(len(code)):
-                if givenCode == code[x]:
-                    name = finalarray[x][1]
-                    designation = finalarray[x][2]
-                    break
-
-        logname = name
-        logdesignation = designation
-        logtime = entrytime
-
-        return render_template("searchlog.html", time=logtime, code=logcode, designation=logdesignation, name=logname)
+@app.route("/log")
+def showdata():
+    return render_template("logdata.html", name=log.name, designation=log.designation, code=log.code, time=log.entrytime)
 
 
 @app.route("/data")

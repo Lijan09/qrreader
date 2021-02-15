@@ -5,13 +5,13 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-      <div class="title">PRINT QR CODE?</div>
-      <br> 
-      <br>
-      <a class="print-home" href={{ url_for("printing") }}> PRINT </a>
-      <br>
-      <br>
-      <a class="print-home" href={{ url_for("home") }}> HOME </a>
-    </div>
+<div class="container">
+  <div class="title">PRINT QR CODE?</div>
+  <br>
+  <br>
+  <a class="print-home" href={{ url_for("printing") }}> PRINT </a>
+  <br>
+  <br>
+  <a class="print-home" href={{ url_for("register") }}> BACK </a>
+</div>
 {% endblock %}

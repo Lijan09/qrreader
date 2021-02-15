@@ -5,29 +5,17 @@
 {% endblock %}
 
 {% block content %}
-<body bgcolor = #3d3d3d>
-    <h1 class="welcome"> Logs for {{name}}</h1><br> 
-        <div class="frame">
-         <div class="info">
-             <div class = "left">
-                <form action = '/searchlog' method="post">
-                    <label for="code">Code:</label>
-                    <input type="text" id="code" name="code">
-                    <input type="submit" class="button submit" value = "Search">
-                </form><br><br>
-                <p class="designation"> Designation: {{designation}}</p> <br>
-                <p class="time">Entry Time: {{time}}</p>
-             </div>
-             <div class="vl"></div>
-             <div class = "right">
-                <p class="fee">Tution Fee: Nil</p> <br>
-                <p class="candue">Canteen Due: Nil</p> <br>
-                <p class="cafdue">Cafe Due: Nil</p> <br>
-             </div>
-         </div>
-         <div style = "position:fixed; left:1290px; top:640px;">
-            <a href = {{ url_for("admin") }} class="button homepage">Admin</a>
-            <a href = {{ url_for("home") }} class="button homepage">Home</a>
-         </div>
-        </div>
+<div class="top">
+    <h1> Search Individual Data </h1>
+</div>
+<div class="form">
+    <form action='/searchlog' method="post">
+        <label for="code">Code:</label>
+        <input type="text" id="code" name="code"><br><br><br>
+        <div style="position:fixed; left:50px; top:550px;">
+            <input type="submit" class="button submit" value="Search"><br>
+            <a href={{ url_for( "admin" ) }} class="button homepage">Back</a><br>
+            <a href={{ url_for( "home" ) }} class="button homepage">Home</a>
+    </form>
+</div>
 {% endblock %}
