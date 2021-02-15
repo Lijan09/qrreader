@@ -224,6 +224,26 @@ input[type="text"] {
   top: 190px;
 }
 
+.line {
+  border-left: 3px solid white;
+  height: 350px;
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  margin-left: -3px;
+  top: 225px;
+}
+
+.line2 {
+  border-left: 3px solid white;
+  height: 450px;
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  margin-left: -3px;
+  top: 175px;
+}
+
 .info {
   color: white;
   font-size: 28px;
@@ -285,8 +305,7 @@ input:focus,
 table {
   color: white;
   border-collapse: collapse;
-  width: 50%;
-  margin-left: 40px;
+  width: 100%;
 }
 
 th {

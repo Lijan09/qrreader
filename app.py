@@ -10,7 +10,6 @@ import cv2
 import log
 
 app = Flask(__name__)
-time = str
 backwardlines = list
 codeSize = (64, 64)
 busNoFont = ImageFont.truetype('arial.ttf', 50)
@@ -169,7 +168,7 @@ def printing():
 
 @app.route("/scanner")
 def scanner():
-    global time, backwardlines
+    global backwardlines
     qrcodeReader.qrreader()
     if (qrcodeReader.result == "authorized") and (qrcodeReader.loginCode != "004"):
         t = localtime()
@@ -200,7 +199,7 @@ def scanner():
 
 @app.route("/adminscanner")
 def adminscanner():
-    global time, backwardlines
+    global backwardlines
     qrcodeReader.qrreader()
     if (qrcodeReader.result == "authorized") and (qrcodeReader.loginCode == "004"):
         t = localtime()
@@ -231,7 +230,6 @@ def adminscanner():
 
 @app.route("/admin")
 def admin():
-    global time
 
     log.logdata(qrcodeReader.requiredCode)
 
@@ -240,7 +238,6 @@ def admin():
 
 @app.route("/home")
 def login():
-    global time
 
     log.logdata(qrcodeReader.requiredCode)
 
@@ -317,7 +314,7 @@ def searchLogData():
 
 @app.route("/log")
 def showdata():
-    return render_template("logdata.html", name=log.name, designation=log.designation, code=log.code, time=log.entrytime)
+    return render_template("logdata.html", name=log.name, designation=log.designation, code=log.code, time=log.time)
 
 
 @app.route("/data")
