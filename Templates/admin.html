@@ -20,7 +20,7 @@
         <!-- <div class="info">
              <div class = "left">
                 <p class="code"> Code: </p> <br>
-                <p class="designation"> Designation: {{designation}}</p> <br>
+                <p class="designation"> Designation: {{designation}}</p> <br8
                 <p class="time">Entry Time: {{time}}</p>
              </div>
          </div> -->
@@ -35,5 +35,6 @@
             <a href={{ url_for("register") }} class="button homepage">Register</a> <br><br>
             <a href={{ url_for("home") }} class="button homepage">Home</a> <br><br>
         </div>
-    </div>
-    {% endblock %}
+        <a href={{ url_for("home") }} class="button homepage" style="position:relative; left:584px; bottom:110px;">Home</a> <br>
+        <a href={{ url_for("register") }} class="button homepage" style="position:relative; left:584px; bottom:470px;">Register</a> <br>
+{% endblock %}
