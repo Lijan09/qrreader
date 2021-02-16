@@ -256,42 +256,43 @@ def adminprintdata():
 
         log.logdata(givenCode)
 
-        d = log.designation.lower()
-        codename = log.name.replace(" ", "")
+        if log.code != givenCode:
+            return render_template("logerror.html")
+        else:
+            d = log.designation.lower()
+            codename = log.name.replace(" ", "")
 
-        if d == "student":
-            d = "001"
-        elif d == "council":
-            d = "002"
-        elif d == "teacher":
-            d = "003"
-        elif d == "admin":
-            d = "004"
+            if d == "student":
+                d = "001"
+            elif d == "council":
+                d = "002"
+            elif d == "teacher":
+                d = "003"
+            elif d == "admin":
+                d = "004"
 
-        ecode = str(randint(100, 1000)) + givenCode + \
-            d + codename.lower()
-        encrypted = encrypt(ecode)
+            ecode = str(randint(100, 1000)) + givenCode + \
+                d + codename.lower()
+            encrypted = encrypt(ecode)
 
-        qr = pyqrcode.create(encrypted)
-        qr.png("code.png", scale=10)
+            qr = pyqrcode.create(encrypted)
+            qr.png("code.png", scale=10)
 
-        qrcode = Image.open('code.png')
-        qrcode = qrcode.resize(codeSize)
-        image = None
+            qrcode = Image.open('code.png')
+            qrcode = qrcode.resize(codeSize)
+            image = None
 
-        if (d == "001") or (d == "002"):
-            makeStudentID(log.name, givenCode, qrcode, log.bno,
-                          log.faculty, log.bstop, log.cell)
+            if (d == "001") or (d == "002"):
+                makeStudentID(log.name, givenCode, qrcode, log.bno,
+                              log.faculty, log.bstop, log.cell)
 
-        elif (d == "003"):
-            makeTeacherID(log.name, qrcode, log.faculty)
+            elif (d == "003"):
+                makeTeacherID(log.name, qrcode, log.faculty)
 
-        elif (d == "004"):
-            makeAdminID(log.name, qrcode)
+            elif (d == "004"):
+                makeAdminID(log.name, qrcode)
 
-        return redirect(url_for("printing"))
-
-    return render_template("error.html")
+            return redirect(url_for("printing"))
 
 
 @app.route("/searchlog")

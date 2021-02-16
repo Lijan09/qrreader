@@ -6,15 +6,15 @@
 
 {% block content %}
 <div class="top">
-    <h1> Search Individual Data </h1>
+    <h1> SEARCH INDIVIDUAL DATA </h1>
 </div>
 <div class="form">
     <form action='/searchlog' method="post">
         <label for="code">Code:</label>
         <input type="text" id="code" name="code"><br><br><br>
-        <div style="position:fixed; left:50px; top:550px;">
-            <input type="submit" class="button submit" value="Search"><br>
-            <a href={{ url_for( "admin" ) }} class="button homepage">Back</a><br>
+        <div style="position:fixed; left:50px; top:350px;">
+            <input type="submit" class="button submit" value="Search">
+            <a href={{ url_for( "admin" ) }} class="button homepage">Back</a>
             <a href={{ url_for( "home" ) }} class="button homepage">Home</a>
     </form>
 </div>
