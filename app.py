@@ -257,7 +257,7 @@ def adminprintdata():
         log.logdata(givenCode)
 
         if log.code != givenCode:
-            return render_template("logerror.html")
+            return render_template("printerror.html")
         else:
             d = log.designation.lower()
             codename = log.name.replace(" ", "")
