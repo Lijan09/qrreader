@@ -2,6 +2,11 @@
 
 {%block head%}
 <title>Welcome</title>
+<style>
+    body{
+        overflow: hidden;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -11,9 +16,13 @@
         </div>
         <br>
         <br>
-        <a class = "login" href = {{ url_for("scanner") }}> LOGIN </a>
+        <a class = "login" href = {{ url_for("scanner") }}> 
+            Login as <br> Student 
+        </a>
         <br>
         <br>
-        <a class = "signup" href= {{ url_for("adminscanner") }}> ADMIN </a>
+        <a class = "signup" href= {{ url_for("adminscanner") }}> 
+            Login as <br> Admin 
+        </a>
     </div>
 {% endblock %}
