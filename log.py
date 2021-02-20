@@ -66,6 +66,9 @@ def logdata(givenCode):
                 bno = finalarray[x][5]
                 cell = finalarray[x][6]
                 break
+    
+    if time == "":
+        time = "Nil"
 
     return name, designation, code, time, faculty, bstop, bno, cell
 
