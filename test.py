@@ -1,4 +1,4 @@
-# --- Progoram to test the formatting of info on the templates. Please don't delete. ---
+# --- Program to test the formatting of info on the templates. Please don't delete. ---
 
 
 from PIL import Image, ImageDraw, ImageFont
@@ -23,7 +23,7 @@ def makeStudentID(name, code, bno, faculty, bstop, cell):
     draw.text((87, 258), cell, (0, 0, 0), font=font)
     draw.text((102, 282), "August 2050", (0, 0, 0), font=font)
 
-    # image.paste(qrcode, (59, 298))
+    image.paste(qrcode, (59, 298))
 
     image.save('studentSave.png')
 
@@ -59,7 +59,7 @@ def makeTeacherID(name, faculty):
 
     draw.text((105, 236), faculty, (0, 0, 0), font=font)
 
-    # image.paste(qrcode, (58, 254))
+    image.paste(qrcode, (58, 254))
 
     image.save('teacherSave.png')
 
@@ -94,7 +94,7 @@ def makeAdminID(name):
         draw.text((width, height), name, (0, 0, 0), font=font)
     draw.text((100, 236), "[Admin Office]", (0, 0, 0), font=font)
 
-    # image.paste(qrcode, (58, 254))
+    image.paste(qrcode, (58, 254))
 
     image.save('adminSave.png')
 
