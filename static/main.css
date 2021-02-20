@@ -158,6 +158,48 @@ input[type="text"] {
   background-position-x: 244px;
 }
 
+.filter {
+  position: absolute;
+  top: 10%;
+  right: 12%;
+  width: 15%;
+  border: solid 3px #ffffff;
+  padding: 12px 20px;
+  border-radius: 4px;
+  background-color: #3d3d3d;
+  font-weight: bold;
+  font-size: 22px;
+  color: #ffffff;
+  -webkit-appearance: none;
+  background-position-x: 244px;
+}
+
+#filter-heading {
+  position: absolute;
+  top: 2%;
+  right: 21%;
+  color: #ffffff;
+  font-size: 22px;
+}
+
+#filter-submit-button {
+  position: absolute;
+  width: 105px;
+  height: 45px;
+  top: 10.5%;
+  right: 4%;
+  border: none;
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #ef5b5b;
+  border-radius: 12px;
+}
+
 .button {
   border: none;
   color: #ffffff;
@@ -292,7 +334,8 @@ input[type="text"] {
 .login:hover,
 .signup:hover,
 .submit:hover,
-.homepage:hover {
+.homepage:hover,
+#filter-submit-button:hover {
   color: #f5f0f0;
   background-color: #df5151;
 }
@@ -301,8 +344,13 @@ input[type="text"] {
   background-color: #6ae0bf;
 }
 
+.filter:hover {
+  background-color: #474747;
+}
+
 input:focus,
-.select:focus {
+.select:focus,
+.filter:focus {
   outline: none;
 }
 

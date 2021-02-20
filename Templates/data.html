@@ -13,6 +13,17 @@
 
 <body bgcolor=#3d3d3d>
     <h1 class="welcome"> AVIALABLE DATA: </h1>
+    <p id = "filter-heading"> Filter by: </p>
+    <input type="submit" id="filter-submit-button" value="Filter">
+    <form action="filter">
+        <select name="designation" class="filter">
+            <option value="All">All</option>
+            <option value="Student">Student</option>
+            <option value="Council">Council</option>
+            <option value="Teacher">Teacher</option>
+            <option value="Admin">Admin</option>
+        </select>
+    </form>
     <div class="frame">
         <table>
             <tr>
