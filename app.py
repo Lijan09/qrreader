@@ -46,12 +46,31 @@ def makeStudentID(name, code, qrcode, bno, faculty, bstop, cell):
 
 
 def makeTeacherID(name, qrcode, faculty):
+    width = int
+    height = int
+
     image = Image.open('teacher.png')
 
     draw = ImageDraw.Draw(image)
 
-    draw.text((88, 224), name, (0, 0, 0), font=font)
-    draw.text((109, 236), faculty, (0, 0, 0), font=font)
+    if len(name) >= 18:
+        width = 88
+        height = 224
+        draw.text((width, height), name, (0, 0, 0), font=font)
+    elif len(name) >= 15:
+        width = 91
+        height = 224
+        draw.text((width, height), name, (0, 0, 0), font=font)
+    elif len(name) >= 13:
+        width = 93
+        height = 224
+        draw.text((width, height), name, (0, 0, 0), font=font)
+    else:
+        width = 102
+        height = 224
+        draw.text((width, height), name, (0, 0, 0), font=font)
+
+    draw.text((105, 236), faculty, (0, 0, 0), font=font)
 
     image.paste(qrcode, (58, 254))
 
@@ -63,12 +82,30 @@ def makeTeacherID(name, qrcode, faculty):
 
 
 def makeAdminID(name, qrcode):
+    width = int
+    height = int
+
     image = Image.open('admin.png')
 
     draw = ImageDraw.Draw(image)
 
-    draw.text((88, 224), name, (0, 0, 0), font=font)
-    draw.text((109, 236), "[Admin Office]", (0, 0, 0), font=font)
+    if len(name) >= 18:
+        width = 88
+        height = 224
+        draw.text((width, height), name, (0, 0, 0), font=font)
+    elif len(name) >= 15:
+        width = 91
+        height = 224
+        draw.text((width, height), name, (0, 0, 0), font=font)
+    elif len(name) >= 13:
+        width = 93
+        height = 224
+        draw.text((width, height), name, (0, 0, 0), font=font)
+    else:
+        width = 102
+        height = 224
+        draw.text((width, height), name, (0, 0, 0), font=font)
+    draw.text((100, 236), "[Admin Office]", (0, 0, 0), font=font)
 
     image.paste(qrcode, (58, 254))
 
