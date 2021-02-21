@@ -377,6 +377,40 @@ def data():
     return render_template("data.html", li=finalarray)
 
 
+@app.route("/data", methods=["GET", "POST"])
+def datadata():
+    if request.method == "POST":
+
+        requiredList = []
+
+        with open("data.txt", 'r') as file:
+
+            array = []
+            finalarray = []
+            content = file.readlines()
+            row = 0
+
+            for line in content:
+
+                row += 1
+                array = line.split(",")
+
+                array[-1] = array[-1].strip()
+
+                finalarray.append(array)
+
+        requiredDesignation = request.form["designation"]
+
+        if requiredDesignation != "All":
+            for x in finalarray:
+                if requiredDesignation == x[2]:
+                    requiredList.append(x)
+
+            return render_template("data.html", li=requiredList)
+        else:
+            return redirect(url_for("data"))
+
+
 @app.route("/delete")
 def delete():
     return render_template("delete.html")
