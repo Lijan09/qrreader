@@ -343,7 +343,12 @@ def adminprintdata():
             elif (d == "004"):
                 makeAdminID(log.name, qrcode)
 
-            return redirect(url_for("printing"))
+            return redirect(url_for("adminprintornot"))
+
+
+@app.route("/adminprinting")
+def adminprintornot():
+    return render_template("adminprinting.html")
 
 
 @app.route("/searchlog")
