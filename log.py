@@ -5,11 +5,12 @@ time = ""
 faculty = str
 bstop = str
 bno = str
+attendance = ""
 cell = str
 
 
 def logdata(givenCode):
-    global name, designation, time, code, faculty, bstop, bno, cell
+    global name, designation, time, code, faculty, bstop, bno, cell, attendance
 
     with open('log.txt', 'r') as textfile:
 
@@ -32,8 +33,11 @@ def logdata(givenCode):
             logcode.append(finalarray[i][1])
 
         for x in range(len(logcode)):
+            attendance = ""
+            time = ""
             if givenCode == logcode[x]:
                 time = finalarray[x][0]
+                attendance = finalarray[x][2]
                 break
 
     with open("data.txt", 'r') as file:
@@ -69,8 +73,11 @@ def logdata(givenCode):
     
     if time == "":
         time = "Nil"
+    
+    if attendance == "":
+        attendance = "Absent"
 
-    return name, designation, code, time, faculty, bstop, bno, cell
+    return name, designation, code, time, faculty, bstop, bno, cell, attendance
 
 
 name = name
@@ -81,3 +88,4 @@ faculty = faculty
 bstop = bstop
 bno = bno
 cell = cell
+attendance = attendance

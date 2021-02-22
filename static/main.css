@@ -273,12 +273,12 @@ input[type="text"] {
 
 .line {
   border-left: 3px solid white;
-  height: 350px;
+  height: 275px;
   position: absolute;
   left: 50%;
   right: 50%;
   margin-left: -3px;
-  top: 225px;
+  top: 250px;
 }
 
 .line2 {
