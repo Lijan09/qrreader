@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{%block head%}
+<title>Print or Not</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="title">PRINT QR CODE?</div>
+  <br>
+  <br>
+  <img src="../static/teacherSave.png" style="left:32%;position:absolute;height: 500px;width:350px;">
+  <a class="print-home" href={{ url_for("printing") }}> PRINT </a><br>
+  <a class="print-home" href={{ url_for("register") }}> BACK </a>
+</div>
+{% endblock %}

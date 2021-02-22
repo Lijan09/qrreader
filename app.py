@@ -180,21 +180,30 @@ def registerdata():
 
         if (d == "001") or (d == "002"):
             makeStudentID(name, code, qrcode, bno, faculty, bstop, cell)
+            return redirect(url_for("studentPreview"))
 
         elif (d == "003"):
             makeTeacherID(name, qrcode, faculty)
+            return redirect(url_for("teacherPreview"))
 
         elif (d == "004"):
             makeAdminID(name, qrcode)
-
-    sleep(0.5)
-
-    return redirect(url_for("printornot"))
+            return redirect(url_for("adminPreview"))
 
 
-@app.route("/printornot")
-def printornot():
-    return render_template("printer.html")
+@app.route("/studentPreview")
+def studentPreview():
+    return render_template("studentPreview.html")
+
+
+@app.route("/teacherPreview")
+def teacherPreview():
+    return render_template("teacherPreview.html")
+
+
+@app.route("/adminPreview")
+def adminPreview():
+    return render_template("adminPreview.html")
 
 
 @app.route("/printing")
@@ -336,19 +345,30 @@ def adminprintdata():
             if (d == "001") or (d == "002"):
                 makeStudentID(log.name, givenCode, qrcode, log.bno,
                               log.faculty, log.bstop, log.cell)
+                return redirect(url_for("adminStudentPreview"))
 
             elif (d == "003"):
                 makeTeacherID(log.name, qrcode, log.faculty)
+                return redirect(url_for("adminTeacherPreview"))
 
             elif (d == "004"):
                 makeAdminID(log.name, qrcode)
+                return redirect(url_for("adminAdminPreview"))
 
-            return redirect(url_for("adminprintornot"))
+
+@app.route("/adminStudentPreview")
+def adminStudentPreview():
+    return render_template("adminStudentPreview.html")
 
 
-@app.route("/adminprinting")
-def adminprintornot():
-    return render_template("adminprinting.html")
+@app.route("/adminTeacherPreview")
+def adminTeacherPreview():
+    return render_template("adminTeacherPreview.html")
+
+
+@app.route("/adminAdminPreview")
+def adminAdminPreview():
+    return render_template("adminAdminPreview.html")
 
 
 @app.route("/searchlog")

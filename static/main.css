@@ -77,7 +77,7 @@ body {
   display: inline-block;
   background-color: #ef5b5b;
   color: #ffffff;
-  padding: 20px 60px;
+  padding: 10px 50px;
   text-align: center;
   text-decoration: none;
   font-size: 32px;
@@ -86,6 +86,9 @@ body {
   border-radius: 20px;
   cursor: pointer;
   font-family: futura;
+  position: relative;
+  left: 15%;
+  top: 50%;
 }
 
 .top {
