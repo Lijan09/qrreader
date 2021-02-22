@@ -17,13 +17,13 @@ font = ImageFont.truetype('arial.ttf', 11)
 
 
 def printer():
-    file_path = "printing.pdf"
+    file_path = "static/printing.pdf"
     os.startfile(file_path, "print")
 
 
 def makeStudentID(name, code, qrcode, bno, faculty, bstop, cell):
 
-    image = Image.open('student.png')
+    image = Image.open('static/student.png')
 
     draw = ImageDraw.Draw(image)
 
@@ -38,18 +38,18 @@ def makeStudentID(name, code, qrcode, bno, faculty, bstop, cell):
 
     image.paste(qrcode, (59, 298))
 
-    image.save('studentSave.png')
+    image.save('static/studentSave.png')
 
-    image1 = Image.open('studentSave.png')
+    image1 = Image.open('static/studentSave.png')
     im1 = image1.convert('RGB')
-    im1.save('printing.pdf')
+    im1.save('static/printing.pdf')
 
 
 def makeTeacherID(name, qrcode, faculty):
     width = int
     height = int
 
-    image = Image.open('teacher.png')
+    image = Image.open('static/teacher.png')
 
     draw = ImageDraw.Draw(image)
 
@@ -74,18 +74,18 @@ def makeTeacherID(name, qrcode, faculty):
 
     image.paste(qrcode, (58, 254))
 
-    image.save('teacherSave.png')
+    image.save('static/teacherSave.png')
 
-    image1 = Image.open('teacherSave.png')
+    image1 = Image.open('static/teacherSave.png')
     im1 = image1.convert('RGB')
-    im1.save('printing.pdf')
+    im1.save('static/printing.pdf')
 
 
 def makeAdminID(name, qrcode):
     width = int
     height = int
 
-    image = Image.open('admin.png')
+    image = Image.open('static/admin.png')
 
     draw = ImageDraw.Draw(image)
 
@@ -109,11 +109,11 @@ def makeAdminID(name, qrcode):
 
     image.paste(qrcode, (58, 254))
 
-    image.save('adminSave.png')
+    image.save('static/adminSave.png')
 
-    image1 = Image.open('adminSave.png')
+    image1 = Image.open('static/adminSave.png')
     im1 = image1.convert('RGB')
-    im1.save('printing.pdf')
+    im1.save('static/printing.pdf')
 
 
 @app.route("/")
@@ -171,9 +171,9 @@ def registerdata():
         encrypted = encrypt(ecode)
 
         qr = pyqrcode.create(encrypted)
-        qr.png("code.png", scale=10)
+        qr.png("static/code.png", scale=10)
 
-        qrcode = Image.open('code.png')
+        qrcode = Image.open('static/code.png')
         qrcode = qrcode.resize(codeSize)
         image = None
         name = fname + " " + lname
@@ -327,9 +327,9 @@ def adminprintdata():
             encrypted = encrypt(ecode)
 
             qr = pyqrcode.create(encrypted)
-            qr.png("code.png", scale=10)
+            qr.png("static/code.png", scale=10)
 
-            qrcode = Image.open('code.png')
+            qrcode = Image.open('static/code.png')
             qrcode = qrcode.resize(codeSize)
             image = None
 

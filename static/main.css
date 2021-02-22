@@ -77,13 +77,13 @@ body {
   display: inline-block;
   background-color: #ef5b5b;
   color: #ffffff;
-  padding: 50px 130px;
+  padding: 20px 60px;
   text-align: center;
   text-decoration: none;
-  font-size: 62px;
+  font-size: 32px;
   margin: 10px;
   opacity: 0.9;
-  border-radius: 50px;
+  border-radius: 20px;
   cursor: pointer;
   font-family: futura;
 }
