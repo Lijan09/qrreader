@@ -1,12 +1,12 @@
-name = str
-designation = str
+name = ""
+designation = ""
 code = ""
 time = ""
-faculty = str
-bstop = str
-bno = str
+faculty = ""
+bstop = ""
+bno = ""
 attendance = ""
-cell = str
+cell = ""
 
 
 def logdata(givenCode):
