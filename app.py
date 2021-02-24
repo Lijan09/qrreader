@@ -7,6 +7,7 @@ from encryptor import encrypt
 import pyqrcode
 from PIL import Image, ImageDraw, ImageFont
 import cv2
+import edit
 import log
 
 app = Flask(__name__)
@@ -672,6 +673,35 @@ def absenteedata():
             return render_template("absentee.html", li=requiredList)
         else:
             return redirect(url_for("absentee"))
+
+
+@app.route("/edit")
+def edited():
+    return render_template("edit.html")
+
+
+@app.route("/edit", methods=["GET", "POST"])
+def editdata():
+    if request.method == "POST":
+
+        code = request.form["code"]
+        fname = request.form["fname"]
+        lname = request.form["lname"]
+        designation = request.form["designation"]
+        faculty = request.form["faculty"]
+        bno = request.form["bno"]
+        bstop = request.form["bstop"]
+        cell = request.form["cell"]
+        name = fname + " " + lname
+
+        log.logdata(code)
+
+        if log.code != code:
+            return render_template("editerror.html")
+        else:
+            edit.editcode(code, name, designation, faculty, bstop, bno, cell)
+            return render_template("editconfirm.html")
+
 
 
 @app.route("/delete")

@@ -276,7 +276,7 @@ input[type="text"] {
 
 .line {
   border-left: 3px solid white;
-  height: 275px;
+  height: 350px;
   position: absolute;
   left: 50%;
   right: 50%;

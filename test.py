@@ -1,16 +1,22 @@
-# fuck aashish
-import log
+requiredData = 0
+code = "3519"
+name = "Lijen"
+designation = ""
+faculty = ""
+bstop = ""
+bno = ""
+cell = ""
+edited = False
 
-with open("data.txt", 'r') as file:
+with open('data.txt', 'r') as file:
 
-    array = []
     finalarray = []
+    controlarray = []
+    array = []
     content = file.readlines()
-    codeli = []
-    attendanceList = []
-    absenteeList = []
-
+    x = 0
     row = 0
+
     for line in content:
 
         row += 1
@@ -20,85 +26,48 @@ with open("data.txt", 'r') as file:
 
         finalarray.append(array)
 
-for i in range(len(finalarray)):
-    codeli.append(finalarray[i][0])
+for x in range(len(finalarray)):
+    if code == finalarray[x][0]:
+        break
 
-for x in codeli:
+if name != "":
+    finalarray[x][1] = name
+    edited = True
 
-    requiredCode = x
+if designation != "":
+    finalarray[x][2] = designation
+    edited = True
 
-    with open('raw_log.txt', 'r') as textfile:
+if faculty != "":
+    finalarray[x][3] = faculty
+    edited = True
 
-        finalarray = []
-        array = []
-        content = textfile.readlines()
-        logcode = []
+if bstop != "":
+    finalarray[x][4] = bstop
+    edited = True
 
-        row = 0
-        for line in content:
+if bno != "":
+    finalarray[x][5] = bno
+    edited = True
 
-            row += 1
-            array = line.split(",")
+if cell != "":
+    finalarray[x][6] = cell
+    edited = True
 
-            array[-1] = array[-1].strip()
+if edited:
 
-            finalarray.append(array)
+    with open('data.txt', 'w') as file:
+        i = []
 
-        for i in range(len(finalarray)):
-            logcode.append(finalarray[i][1])
+        for j in range(len(finalarray)):
+            line = code + "," + finalarray[j][1] + "," + \
+                finalarray[j][2] + "," + finalarray[j][3] + "," + \
+                finalarray[j][4] + "," + \
+                finalarray[j][5] + "," + finalarray[j][6]
 
-        for x in range(len(logcode)):
-            attendance = ""
-            if requiredCode == logcode[x]:
-                time = finalarray[x][0]
-                attendance = finalarray[x][2]
-                break
+            file.write(line + "\n")
 
-    if attendance == "":
-        attendance = "Absent"
-
-    li = [requiredCode, attendance]
-    attendanceList.append(li)
-
-for j in range(len(attendanceList)):
-
-    if attendanceList[j][1].lower() == "absent":
-        with open("data.txt", 'r') as file:
-
-            array = []
-            finalarray = []
-            content = file.readlines()
-            codeli = []
-
-            row = 0
-            for line in content:
-
-                row += 1
-                array = line.split(",")
-
-                array[-1] = array[-1].strip()
-
-                finalarray.append(array)
-
-            for i in range(len(finalarray)):
-                codeli.append(finalarray[i][0])
-
-            for x in range(len(codeli)):
-                if attendanceList[j][0] == codeli[x]:
-                    code = finalarray[x][0]
-                    name = finalarray[x][1]
-                    designation = finalarray[x][2]
-                    faculty = finalarray[x][3]
-                    bstop = finalarray[x][4]
-                    bno = finalarray[x][5]
-                    cell = finalarray[x][6]
-                    break
-
-        line = code + "," + name + "," + designation + "," + \
-            faculty + "," + bstop + "," + bno + "," + cell
-
-        array = line.split(",")
-
-        absenteeList.append(array)
-
-print(absenteeList)
+print(finalarray)
+print(controlarray)
+print(edited)
+print(name)
