@@ -11,6 +11,7 @@ import edit
 import log
 
 app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 backwardlines = list
 codeSize = (64, 64)
 busNoFont = ImageFont.truetype('arial.ttf', 50)
@@ -142,7 +143,7 @@ def registerdata():
         d = designation.lower()
 
         if bno == "":
-            bno = "Nil"
+            bno = "?"
 
         if bstop == "":
             bstop = "Nil"
@@ -700,8 +701,7 @@ def editdata():
             return render_template("editerror.html")
         else:
             edit.editcode(code, name, designation, faculty, bstop, bno, cell)
-            return render_template("editconfirm.html")
-
+            return redirect(url_for("edited"))
 
 
 @app.route("/delete")

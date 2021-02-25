@@ -1,8 +1,9 @@
 3513,Aashish Kadel,Student,+2 Science,Putalisadak,H,9840030767
-3519,Lijan Shrestha,Student,+2 Science,Tahachal,A,9841994411
+3519,Lijan Shrestha,Student,+2 Science,Tahachal,A,9818981841
 3613,Mokshyak Amatya,Council,+2 Science,Imadol,Z,9818684008
 4686,Aadesh Amatya,Teacher,+2 Science,Nil,Nil,9800000000
 6842,Faisal Ahmed,Admin,Admin,Nil,Nil,9800000001
-6801,Raj Kumar Maharjan,Teacher,+2 Science,Nil,Nil,9800000002
+6801,Raj Kumar Maharjan,Teacher,+2 Science,Nil,?,9800000002
 8848,Bill Gates,Teacher,+2 Science,Nil,W,9999999999
-3675,Arna Poodle,Student,+2 Science,Nil,?,1234567890
+3675,Arina Poudel,Student,+2 Science,Sukedhara,?,1234567890
+0044,bruhbruh ahahaha,Council,A Levels,ckbaiscb,V,2209911002
