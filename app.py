@@ -19,7 +19,7 @@ font = ImageFont.truetype('arial.ttf', 11)
 
 
 def printer():
-    file_path = "static/printing.pdf"
+    file_path = r"C:\Users\Lijan\Desktop\Projects\qrreader\static/printing.pdf"
     os.startfile(file_path, "print")
 
 
@@ -225,7 +225,7 @@ def scanner():
         time = a[0:9]
 
         attendanceTime = int(time[0:2] + time[3:5])
-        if attendanceTime > 815:
+        if attendanceTime > 1100:
             attendance = "Absent"
         else:
             attendance = "Present"
@@ -263,7 +263,7 @@ def adminscanner():
         time = a[0:9]
 
         attendanceTime = int(time[0:2] + time[3:5])
-        if attendanceTime > 815:
+        if attendanceTime > 1100:
             attendance = "Absent"
         else:
             attendance = "Present"
@@ -481,7 +481,7 @@ def absentee():
 
         requiredCode = x
 
-        with open('raw_log.txt', 'r') as textfile:
+        with open('log.txt', 'r') as textfile:
 
             finalarray = []
             array = []
