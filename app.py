@@ -25,7 +25,7 @@ def printer():
 
 def makeStudentID(name, code, qrcode, bno, faculty, bstop, cell):
 
-    image = Image.open('static/student.png')
+    image = Image.open('static/ID Template/student.png')
 
     draw = ImageDraw.Draw(image)
 
@@ -40,18 +40,19 @@ def makeStudentID(name, code, qrcode, bno, faculty, bstop, cell):
 
     image.paste(qrcode, (59, 298))
 
-    image.save('static/studentSave.png')
+    image.save('static/ID Template/studentSave.png')
+    os.rename('static/adminsave.png', code)
 
-    image1 = Image.open('static/studentSave.png')
+    image1 = Image.open('static/ID Template/studentSave.png')
     im1 = image1.convert('RGB')
-    im1.save('static/printing.pdf')
+    im1.save('static/ID Template/printing.pdf')
 
 
 def makeTeacherID(name, qrcode, faculty):
     width = int
     height = int
 
-    image = Image.open('static/teacher.png')
+    image = Image.open('static/ID Template/teacher.png')
 
     draw = ImageDraw.Draw(image)
 
@@ -76,18 +77,18 @@ def makeTeacherID(name, qrcode, faculty):
 
     image.paste(qrcode, (58, 254))
 
-    image.save('static/teacherSave.png')
+    image.save('static/ID Template/teacherSave.png')
 
-    image1 = Image.open('static/teacherSave.png')
+    image1 = Image.open('static/ID Template/teacherSave.png')
     im1 = image1.convert('RGB')
-    im1.save('static/printing.pdf')
+    im1.save('static/ID Template/printing.pdf')
 
 
 def makeAdminID(name, qrcode):
     width = int
     height = int
 
-    image = Image.open('static/admin.png')
+    image = Image.open('static/ID Template/admin.png')
 
     draw = ImageDraw.Draw(image)
 
@@ -111,11 +112,11 @@ def makeAdminID(name, qrcode):
 
     image.paste(qrcode, (58, 254))
 
-    image.save('static/adminSave.png')
+    image.save('static/ID Template/adminSave.png')
 
-    image1 = Image.open('static/adminSave.png')
+    image1 = Image.open('static/ID Template/adminSave.png')
     im1 = image1.convert('RGB')
-    im1.save('static/printing.pdf')
+    im1.save('static/ID Template/printing.pdf')
 
 
 @app.route("/")
