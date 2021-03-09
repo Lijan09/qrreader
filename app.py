@@ -16,7 +16,7 @@ backwardlines = list
 codeSize = (64, 64)
 busNoFont = ImageFont.truetype('arial.ttf', 50)
 font = ImageFont.truetype('arial.ttf', 11)
-
+token = 500
 
 def printer():
     file_path = r"C:\Users\Lijan\Desktop\Projects\qrreader\static/printing.pdf"
@@ -165,7 +165,7 @@ def registerdata():
 
         with open('data.txt', 'a+') as file:
             line = code + "," + fname + " " + lname + "," + \
-                designation + "," + faculty + "," + bstop + "," + bno + "," + cell
+                designation + "," + faculty + "," + bstop + "," + bno + "," + cell + "," + "0"
 
             file.write(line + "\n")
 
@@ -174,9 +174,9 @@ def registerdata():
         encrypted = encrypt(ecode)
 
         qr = pyqrcode.create(encrypted)
-        qr.png("static/code.png", scale=10)
+        qr.png("static/ID Template/code.png", scale=10)
 
-        qrcode = Image.open('static/code.png')
+        qrcode = Image.open('static/ID Template/code.png')
         qrcode = qrcode.resize(codeSize)
         image = None
         name = fname + " " + lname
@@ -339,9 +339,9 @@ def adminprintdata():
             encrypted = encrypt(ecode)
 
             qr = pyqrcode.create(encrypted)
-            qr.png("static/code.png", scale=10)
+            qr.png("static/ID Template/code.png", scale=10)
 
-            qrcode = Image.open('static/code.png')
+            qrcode = Image.open('static/ID Template/code.png')
             qrcode = qrcode.resize(codeSize)
             image = None
 
@@ -746,10 +746,97 @@ def deletedata():
                     line = finalarray[x][0] + "," + \
                         finalarray[x][1] + "," + finalarray[x][2] + "," + finalarray[x][3] + \
                         "," + finalarray[x][4] + "," + \
-                        finalarray[x][5] + "," + finalarray[x][6]
+                        finalarray[x][5] + "," + finalarray[x][6] + "," + finalarray[x][7]
                     file.write(line + "\n")
 
     return redirect(url_for("delete"))
+
+
+@app.route("/canteen")
+def canteen():
+    global token
+    qrcodeReader.qrreader()
+    if (qrcodeReader.result == "authorized"):
+        token = token + 1
+        return redirect(url_for(canteenhome))
+    else:
+        return render_template("canteenerror.html")
+
+
+@app.route("/canteenhome")
+def canteenhome():
+    return render_template("canteenhome.html")
+
+
+@app.route("/canteenhome", methods=["GET", "POST"])
+def canteenhomedata():
+    global token
+
+    if request.method == "POST":
+
+        momo = int(request.form["momo"])
+        chowmein = int(request.form["chowmein"])
+        friedRice = int(request.form["friedRice"])
+        khanaSet = int(request.form["khanaSet"])
+        code = qrcodeReader.requiredCode
+
+        total = momo * 120 + chowmein * 100 + friedRice * 100 + khanaSet * 170
+        
+        with open("canteentoken.txt", "a+") as file:
+            file.write(token + "," + momo + "," + chowmein + "," + friedRice + "," + khanaSet )
+
+        with open('data.txt', 'r') as file:
+
+            finalarray = []
+            array = []
+            content = file.readlines()
+            row = 0
+
+            for line in content:
+
+                row += 1
+                array = line.split(",")
+
+                array[-1] = array[-1].strip()
+
+                finalarray.append(array)
+        
+        for x in range(len(finalarray)):
+            if code == finalarray[x][0]:
+                break
+
+        finalarray[x][7] = str(total)
+            
+        with open('data.txt', 'w') as file:
+
+            for j in range(len(finalarray)):
+                line = finalarray[j][0] + "," + finalarray[j][1] + "," + \
+                    finalarray[j][2] + "," + finalarray[j][3] + "," + \
+                    finalarray[j][4] + "," + \
+                    finalarray[j][5] + "," + finalarray[j][6] + "," + finalarray[j][7]
+
+                file.write(line + "\n")
+
+
+@app.route("/canteenorder")
+def canteenorder():
+    with open("canteenhome.html", "r") as file:
+
+        finalarray = []
+        array = []
+        content = file.readlines()
+        row = 0
+
+        for line in content:
+
+            row += 1
+            array = line.split(",")
+
+            array[-1] = array[-1].strip()
+
+            finalarray.append(array)
+
+    
 
 
 if __name__ == "__main__":

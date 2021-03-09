@@ -4,7 +4,6 @@ def editcode(code, name, designation, faculty, bstop, bno, cell):
     with open('data.txt', 'r') as file:
 
         finalarray = []
-        controlarray = []
         array = []
         content = file.readlines()
         x = 0
@@ -48,6 +47,6 @@ def editcode(code, name, designation, faculty, bstop, bno, cell):
             line = finalarray[j][0] + "," + finalarray[j][1] + "," + \
                 finalarray[j][2] + "," + finalarray[j][3] + "," + \
                 finalarray[j][4] + "," + \
-                finalarray[j][5] + "," + finalarray[j][6]
+                finalarray[j][5] + "," + finalarray[j][6] + "," + finalarray[j][7]
 
             file.write(line + "\n")

@@ -1,12 +1,5 @@
-3513,Aashish Kadel,Student,+2 Science,Putalisadak,H,9840030767
-3519,Lijan Shrestha,Student,+2 Science,Tahachal,A,9841000000
-3613,Mokshyak Amatya,Council,+2 Science,Imadol,Z,9818684008
-4686,Aadesh Amatya,Teacher,+2 Science,Nil,Nil,9800000000
-6842,Faisal Ahmed,Admin,Admin,Nil,Nil,9800000001
-0420,Samip Baral,Teacher,+2 Science,Baneshwor,X,9874563145
-3512,Aasmika Thakali,Student,+2 Science,Swayambhu,12,9845738358
-7890,Sahil Awale,Student,+2 Science,Patam,I,98987987987
-0000,Sanam Thapa,Teacher,+2 Science,Dhapakhel,?,3216457981
-3575,Chaitanya M Kayastha,Student,+2 Science,Nil,?,0000124567
-0003,Ganesh Datta Bhatta,Admin,Admin,Dhapakhel,?,0000000000
-0005,Pawan Raj Adhikari,Teacher,+2 Science,Nil,?,0000000000
+3513,Aashish Kadel,Student,+2 Science,Putalisadak,H,9840030767,0
+3519,Lijan Shrestha,Student,+2 Science,Tahachal,A,9841000000,0
+3613,Mokshyak Amatya,Council,+2 Science,Imadol,Z,9818684008,0
+4686,Aadesh Amatya,Teacher,+2 Science,Nil,Nil,9800000000,0
+6842,Faisal Ahmed,Admin,Admin,Nil,Nil,9800000001,0
