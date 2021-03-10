@@ -18,6 +18,7 @@ busNoFont = ImageFont.truetype('arial.ttf', 50)
 font = ImageFont.truetype('arial.ttf', 11)
 token = 500
 
+
 def printer():
     file_path = r"C:\Users\Lijan\Desktop\Projects\qrreader\static/printing.pdf"
     os.startfile(file_path, "print")
@@ -746,7 +747,8 @@ def deletedata():
                     line = finalarray[x][0] + "," + \
                         finalarray[x][1] + "," + finalarray[x][2] + "," + finalarray[x][3] + \
                         "," + finalarray[x][4] + "," + \
-                        finalarray[x][5] + "," + finalarray[x][6] + "," + finalarray[x][7]
+                        finalarray[x][5] + "," + \
+                        finalarray[x][6] + "," + finalarray[x][7]
                     file.write(line + "\n")
 
     return redirect(url_for("delete"))
@@ -754,18 +756,24 @@ def deletedata():
 
 @app.route("/canteen")
 def canteen():
+    return render_template("canteenhome.html")
+
+
+@app.route("/canteenscan")
+def canteenscanner():
     global token
     qrcodeReader.qrreader()
     if (qrcodeReader.result == "authorized"):
         token = token + 1
-        return redirect(url_for(canteenhome))
+        return redirect(url_for("canteenhome"))
     else:
         return render_template("canteenerror.html")
 
 
 @app.route("/canteenhome")
 def canteenhome():
-    return render_template("canteenhome.html")
+    global token
+    return render_template("canteen.html", token=token)
 
 
 @app.route("/canteenhome", methods=["GET", "POST"])
@@ -776,14 +784,15 @@ def canteenhomedata():
 
         momo = int(request.form["momo"])
         chowmein = int(request.form["chowmein"])
-        friedRice = int(request.form["friedRice"])
+        fries = int(request.form["fries"])
         khanaSet = int(request.form["khanaSet"])
         code = qrcodeReader.requiredCode
 
-        total = momo * 120 + chowmein * 100 + friedRice * 100 + khanaSet * 170
-        
+        total = momo * 120 + chowmein * 90 + fries * 100 + khanaSet * 170
+
         with open("canteentoken.txt", "a+") as file:
-            file.write(token + "," + momo + "," + chowmein + "," + friedRice + "," + khanaSet )
+            file.write(str(token) + "," + str(momo) + "," + str(chowmein) +
+                       "," + str(fries) + "," + str(khanaSet) + "\n")
 
         with open('data.txt', 'r') as file:
 
@@ -800,27 +809,33 @@ def canteenhomedata():
                 array[-1] = array[-1].strip()
 
                 finalarray.append(array)
-        
+
         for x in range(len(finalarray)):
             if code == finalarray[x][0]:
                 break
 
-        finalarray[x][7] = str(total)
-            
+        amount = finalarray[x][7]
+
+        finalarray[x][7] = str(total + int(amount))
+
         with open('data.txt', 'w') as file:
 
             for j in range(len(finalarray)):
                 line = finalarray[j][0] + "," + finalarray[j][1] + "," + \
                     finalarray[j][2] + "," + finalarray[j][3] + "," + \
                     finalarray[j][4] + "," + \
-                    finalarray[j][5] + "," + finalarray[j][6] + "," + finalarray[j][7]
+                    finalarray[j][5] + "," + \
+                    finalarray[j][6] + "," + finalarray[j][7]
 
                 file.write(line + "\n")
+
+        return redirect(url_for("canteen"))
 
 
 @app.route("/canteenorder")
 def canteenorder():
-    with open("canteenhome.html", "r") as file:
+
+    with open("canteentoken.txt", "r") as file:
 
         finalarray = []
         array = []
@@ -837,6 +852,8 @@ def canteenorder():
             finalarray.append(array)
 
     
+
+    return render_template("canteenorder.html", li=finalarray)
 
 
 if __name__ == "__main__":

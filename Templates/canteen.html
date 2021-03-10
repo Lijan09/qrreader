@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{%block head%}
+<title>MENU</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: futura;
+    }
+
+    .title {
+        padding-top: 37px;
+        text-align: center;
+        font-size: 97px;
+        color: #ffffff;
+    }
+
+    .welcome {
+        text-align: center;
+        padding-top: 34px;
+        color: white;
+        font-size: 45px;
+        font-weight: bold;
+    }
+
+    .frame {
+        background-color: #40c9a2;
+        padding-bottom: 530px;
+    }
+
+    .form {
+        background-color: #40c9a2;
+        color: #ffffff;
+        font-size: 30px;
+        padding-left: 50px;
+        padding-top: 40px;
+        padding-bottom: 23px;
+        margin: 8px 0;
+        font-weight: bold;
+    }
+
+    input[type="number"] {
+        color: #ffffff;
+        font-family: futura;
+        font-size: 22px;
+        padding-top: 10px;
+        border: none;
+        border-bottom: 2px solid white;
+        background-color: #40c9a2;
+        text-align: center;
+    }
+
+    textarea:focus,
+    input:focus {
+        outline: none;
+    }
+
+    #momo {
+        width: 130px;
+    }
+
+    #khana {
+        width: 120px;
+    }
+
+    #Chowmien {
+        width: 120px;
+    }
+
+    #fries {
+        width: 120px;
+    }
+
+    .button {
+        border: none;
+        color: #ffffff;
+        font-weight: bold;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 14px 12px;
+        cursor: pointer;
+        background-color: #ef5b5b;
+        border-radius: 12px;
+    }
+
+    .submit {
+        width: 146px;
+        left: 550px;
+        top: 540px;
+    }
+
+    .homepage {
+        width: 82px;
+        left: 550px;
+        top: 540px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<h1 class="welcome"> Place Your Order! ({{token}}) </h1><br>
+<div class="form">
+    <form action='/canteenhome' method="post">
+        <label for="momo">Buff MoMo:</label>
+        <input type="number" value=0 min=0 max=20 id="momo" name=momo><br><br><br>
+        <label for="Chowmien">Buff Chowmien</label>
+        <input type="number" value=0 min=0 max=20 id="chowmein" name=chowmein><br><br><br>
+        <label for="fries">Chilli Fries</label>
+        <input type="number" value=0 min=0 max=20 id="fries" name=fries><br><br><br>
+        <label for="Khana">Khana Set (Non-Veg)</label>
+        <input type="number" value=0 min=0 max=20 id="khanaSet" name=khanaSet><br><br><br>
+</div>
+<div class="canteenbutton" style="position:absolute; left:1100px; top:580px;">
+    <a href={{ url_for("canteen") }} class="button homepage"> Back </a>
+    <input type="submit" class="button submit" value="Confirm">
+    </form>
+</div>
+
+{% endblock %}
