@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 3513,Aashish Kadel,Student,+2 Science,Putalisadak,H,9840030767
 3519,Lijan Shrestha,Student,+2 Science,Tahachal,A,9841994411
 3613,Mokshyak Amatya,Council,+2 Science,Imadol,Z,9818684008
@@ -7,3 +8,10 @@
 8848,Bill Gates,Teacher,+2 Science,Nil,W,9999999999
 3675,Arna Poodle,Student,+2 Science,Nil,?,1234567890
 3602,Siddhartha Devkota,Student,+2 Science,Jhamsikhel,K,9823424160
+=======
+3513,Aashish Kadel,Student,+2 Science,Putalisadak,H,9840030767,1330
+3519,Lijan Shrestha,Student,+2 Science,Tahachal,A,9841000000,0
+3613,Mokshyak Amatya,Council,+2 Science,Imadol,Z,9818684008,0
+4686,Aadesh Amatya,Teacher,+2 Science,Nil,Nil,9800000000,0
+6842,Faisal Ahmed,Admin,Admin,Nil,Nil,9800000001,2510
+>>>>>>> 2503e7c68e3e57fac2ca3323b7d4890f4c0e452c

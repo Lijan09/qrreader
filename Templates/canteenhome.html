@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{%block head%}
+<title>Canteen</title>
+<style>
+    body {
+        overflow: hidden;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="title">
+        Canteen
+    </div>
+    <br>
+    <br>
+    <a class="login" href={{ url_for("canteenscanner") }}>
+        Login
+    </a>
+
+</div>
+{% endblock %}
