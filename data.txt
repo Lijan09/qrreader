@@ -6,3 +6,4 @@
 6801,Raj Kumar Maharjan,Teacher,+2 Science,Nil,Nil,9800000002
 8848,Bill Gates,Teacher,+2 Science,Nil,W,9999999999
 3675,Arna Poodle,Student,+2 Science,Nil,?,1234567890
+3602,Siddhartha Devkota,Student,+2 Science,Jhamsikhel,K,9823424160

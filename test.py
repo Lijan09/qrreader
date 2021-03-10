@@ -1,73 +1,112 @@
-requiredData = 0
-code = "3519"
-name = "Lijen"
-designation = ""
-faculty = ""
-bstop = ""
-bno = ""
-cell = ""
-edited = False
+from PIL import Image, ImageDraw, ImageFont
 
-with open('data.txt', 'r') as file:
+codeSize = (64, 64)
+busNoFont = ImageFont.truetype('arial.ttf', 50)
+font = ImageFont.truetype('arial.ttf', 11)
 
-    finalarray = []
-    controlarray = []
-    array = []
-    content = file.readlines()
-    x = 0
-    row = 0
 
-    for line in content:
+def makeStudentID():
 
-        row += 1
-        array = line.split(",")
+    name = 'Aashish Kadel'
 
-        array[-1] = array[-1].strip()
+    Image.open('static/code.png')
+    image = Image.open('static/student.png')
 
-        finalarray.append(array)
+    draw = ImageDraw.Draw(image)
 
-for x in range(len(finalarray)):
-    if code == finalarray[x][0]:
-        break
+    draw.text((152, 95), 'H', (0, 0, 0), font=busNoFont)
+    draw.text((68, 155), name, (0, 0, 0),
+              font=ImageFont.truetype('arial.ttf', 14))
+    draw.text((108, 176), '3513', (0, 0, 0), font=font)
+    draw.text((122, 196), '+2 Science', (0, 0, 0), font=font)
+    draw.text((109, 219), 'Putalisadak', (0, 0, 0), font=font)
+    draw.text((89, 240), '9840030767', (0, 0, 0), font=font)
+    draw.text((104, 260), "August 2050", (0, 0, 0), font=font)
 
-if name != "":
-    finalarray[x][1] = name
-    edited = True
+    # image.paste('static/code.png', (59, 298))
 
-if designation != "":
-    finalarray[x][2] = designation
-    edited = True
+    image.save('static/studentSave.png')
 
-if faculty != "":
-    finalarray[x][3] = faculty
-    edited = True
+    image1 = Image.open('static/studentSave.png')
+    im1 = image1.convert('RGB')
+    im1.save('static/printing.pdf')
 
-if bstop != "":
-    finalarray[x][4] = bstop
-    edited = True
 
-if bno != "":
-    finalarray[x][5] = bno
-    edited = True
+def makeTeacherID():
+    name = 'Raj Kumar Maharjan'
+    width = int
+    height = int
 
-if cell != "":
-    finalarray[x][6] = cell
-    edited = True
+    Image.open('static/code.png')
+    image = Image.open('static/teacher.png')
 
-if edited:
+    draw = ImageDraw.Draw(image)
 
-    with open('data.txt', 'w') as file:
-        i = []
+    if len(name) >= 18:
+        width = 88
+        height = 210
+        draw.text((width, height), name, (0, 0, 0), font=font)
+    elif len(name) >= 15:
+        width = 91
+        height = 210
+        draw.text((width, height), name, (0, 0, 0), font=font)
+    elif len(name) >= 13:
+        width = 93
+        height = 210
+        draw.text((width, height), name, (0, 0, 0), font=font)
+    else:
+        width = 102
+        height = 210
+        draw.text((width, height), name, (0, 0, 0), font=font)
 
-        for j in range(len(finalarray)):
-            line = code + "," + finalarray[j][1] + "," + \
-                finalarray[j][2] + "," + finalarray[j][3] + "," + \
-                finalarray[j][4] + "," + \
-                finalarray[j][5] + "," + finalarray[j][6]
+    draw.text((105, 222), '+2 Science', (0, 0, 0), font=font)
 
-            file.write(line + "\n")
+    # image.paste('static/code.png', (58, 254))
 
-print(finalarray)
-print(controlarray)
-print(edited)
-print(name)
+    image.save('static/teacherSave.png')
+
+    image1 = Image.open('static/teacherSave.png')
+    im1 = image1.convert('RGB')
+    im1.save('static/printing.pdf')
+
+
+def makeAdminID():
+    name = 'Raj Kumar Maharjan'
+    width = int
+    height = int
+
+    Image.open('static/code.png')
+    image = Image.open('static/admin.png')
+
+    draw = ImageDraw.Draw(image)
+
+    if len(name) >= 18:
+        width = 88
+        height = 210
+        draw.text((width, height), name, (0, 0, 0), font=font)
+    elif len(name) >= 15:
+        width = 91
+        height = 210
+        draw.text((width, height), name, (0, 0, 0), font=font)
+    elif len(name) >= 13:
+        width = 93
+        height = 210
+        draw.text((width, height), name, (0, 0, 0), font=font)
+    else:
+        width = 102
+        height = 210
+        draw.text((width, height), name, (0, 0, 0), font=font)
+    draw.text((100, 222), "[Admin Office]", (0, 0, 0), font=font)
+
+    # image.paste('static/code.png', (58, 254))
+
+    image.save('static/adminSave.png')
+
+    image1 = Image.open('static/adminSave.png')
+    im1 = image1.convert('RGB')
+    im1.save('static/printing.pdf')
+
+
+# makeStudentID()
+# makeAdminID()
+makeTeacherID()
