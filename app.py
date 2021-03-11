@@ -857,9 +857,29 @@ def canteenorder():
         orders = []
 
         orders.append(finalarray[x][0])
-        line = "Momo x" + finalarray[x][1] + ", " + "Chowmein x" + finalarray[x][2] + \
-            ", " + "Chilli Fries x" + \
-            finalarray[x][3] + ", " + "Khana Set x" + finalarray[x][4]
+
+        if finalarray[x][1] == "0":
+            momoline = ""
+        else:
+            momoline = "Momo x" + finalarray[x][1] + ", "
+
+        if finalarray[x][2] == "0":
+            chowmeinline = ""
+        else:
+            chowmeinline = "Chowmein x" + finalarray[x][2] + ", "
+
+        if finalarray[x][3] == "0":
+            friesline = ""
+        else:
+            friesline = "Chilli Fries x" + finalarray[x][3] + ", "
+
+        if finalarray[x][4] == "0":
+            khanaline = ""
+        else:
+            khanaline = "Khana Set x" + finalarray[x][4] + ", "            
+        
+        line = momoline + chowmeinline + friesline + khanaline
+        
         orders.append(line)
 
         finalorder.append(orders)
