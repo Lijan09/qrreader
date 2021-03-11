@@ -26,7 +26,7 @@ def printer():
 
 def makeStudentID(name, code, qrcode, bno, faculty, bstop, cell):
 
-    image = Image.open('static/ID Template/student.png')
+    image = Image.open('static/student.png')
 
     draw = ImageDraw.Draw(image)
 
@@ -41,19 +41,18 @@ def makeStudentID(name, code, qrcode, bno, faculty, bstop, cell):
 
     image.paste(qrcode, (59, 298))
 
-    image.save('static/ID Template/studentSave.png')
-    os.rename('static/adminsave.png', code)
+    image.save('static/studentSave.png')
 
-    image1 = Image.open('static/ID Template/studentSave.png')
+    image1 = Image.open('static/studentSave.png')
     im1 = image1.convert('RGB')
-    im1.save('static/ID Template/printing.pdf')
+    im1.save('static/printing.pdf')
 
 
 def makeTeacherID(name, qrcode, faculty):
     width = int
     height = int
 
-    image = Image.open('static/ID Template/teacher.png')
+    image = Image.open('static/teacher.png')
 
     draw = ImageDraw.Draw(image)
 
@@ -78,18 +77,18 @@ def makeTeacherID(name, qrcode, faculty):
 
     image.paste(qrcode, (58, 254))
 
-    image.save('static/ID Template/teacherSave.png')
+    image.save('static/teacherSave.png')
 
-    image1 = Image.open('static/ID Template/teacherSave.png')
+    image1 = Image.open('static/teacherSave.png')
     im1 = image1.convert('RGB')
-    im1.save('static/ID Template/printing.pdf')
+    im1.save('static/printing.pdf')
 
 
 def makeAdminID(name, qrcode):
     width = int
     height = int
 
-    image = Image.open('static/ID Template/admin.png')
+    image = Image.open('static/admin.png')
 
     draw = ImageDraw.Draw(image)
 
@@ -113,11 +112,11 @@ def makeAdminID(name, qrcode):
 
     image.paste(qrcode, (58, 254))
 
-    image.save('static/ID Template/adminSave.png')
+    image.save('static/adminSave.png')
 
-    image1 = Image.open('static/ID Template/adminSave.png')
+    image1 = Image.open('static/adminSave.png')
     im1 = image1.convert('RGB')
-    im1.save('static/ID Template/printing.pdf')
+    im1.save('static/printing.pdf')
 
 
 @app.route("/")
@@ -175,9 +174,9 @@ def registerdata():
         encrypted = encrypt(ecode)
 
         qr = pyqrcode.create(encrypted)
-        qr.png("static/ID Template/code.png", scale=10)
+        qr.png("static/code.png", scale=1)
 
-        qrcode = Image.open('static/ID Template/code.png')
+        qrcode = Image.open('static/code.png')
         qrcode = qrcode.resize(codeSize)
         image = None
         name = fname + " " + lname
@@ -340,9 +339,9 @@ def adminprintdata():
             encrypted = encrypt(ecode)
 
             qr = pyqrcode.create(encrypted)
-            qr.png("static/ID Template/code.png", scale=10)
+            qr.png("static/code.png", scale=20)
 
-            qrcode = Image.open('static/ID Template/code.png')
+            qrcode = Image.open('static/code.png')
             qrcode = qrcode.resize(codeSize)
             image = None
 
@@ -705,6 +704,7 @@ def editdata():
             edit.editcode(code, name, designation, faculty, bstop, bno, cell)
             return redirect(url_for("edited"))
 
+
 @app.route("/delete")
 def delete():
     return render_template("delete.html")
@@ -876,10 +876,10 @@ def canteenorder():
         if finalarray[x][4] == "0":
             khanaline = ""
         else:
-            khanaline = "Khana Set x" + finalarray[x][4] + ", "            
-        
+            khanaline = "Khana Set x" + finalarray[x][4] + ", "
+
         line = momoline + chowmeinline + friesline + khanaline
-        
+
         orders.append(line)
 
         finalorder.append(orders)
