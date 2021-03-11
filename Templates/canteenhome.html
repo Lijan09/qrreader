@@ -12,13 +12,15 @@
 {% block content %}
 <div class="container">
     <div class="title">
-        Canteen
+        Scan To Place Order!
     </div>
     <br>
     <br>
-    <a class="login" href={{ url_for("canteenscanner") }}>
-        Login
-    </a>
+    <div style="position:absolute; left:600px; top:320px;">
+        <a class="login" href={{ url_for("canteenscanner") }}>
+            Scan!
+        </a>
+    </div>
 
 </div>
 {% endblock %}

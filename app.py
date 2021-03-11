@@ -13,7 +13,7 @@ import log
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 backwardlines = list
-codeSize = (64, 64)
+codeSize = (96, 96)
 busNoFont = ImageFont.truetype('arial.ttf', 50)
 font = ImageFont.truetype('arial.ttf', 11)
 token = 500
