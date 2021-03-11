@@ -177,11 +177,19 @@
             </tr>
             {% endfor %}
         </table>
+<<<<<<< HEAD
         <div style="position:absolute; left:1100px; top:600px;">
             <input type="submit" class="button submit" value="Dispatched">
         </div>
         <label class="lijan" for="token" style="position:absolute; left:870px; top:570px;">Token:</label>
         <input type="number" min=500 max=999 id="token" name="token" style="position:absolute; left:990px; top:600px;">
+=======
+    </div>
+    <div style="position:absolute; left:1100px; top:600px;">
+        <label for="token">Token:</label>
+        <input type="number" min=500 max=999 id="token" name="token" autocomplete=off>
+        <input type="submit" class="button submit" value="Confirm">
+>>>>>>> bfe306a5a052bb42a091743f09ea6c3538efe0f1
     </div>
 </form>
 {% endblock %}
