@@ -416,6 +416,9 @@ def data():
 
             finalarray.append(array)
 
+    for x in range(len(finalarray)):
+        del finalarray[x][-1]
+
     return render_template("data.html", li=finalarray)
 
 
@@ -447,6 +450,9 @@ def datadata():
             for x in finalarray:
                 if requiredDesignation == x[2]:
                     requiredList.append(x)
+
+            for x in range(len(finalarray)):
+                del requiredList[x][-1]
 
             return render_template("data.html", li=requiredList)
         else:
