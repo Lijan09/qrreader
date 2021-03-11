@@ -3,4 +3,3 @@
 3613,Mokshyak Amatya,Council,+2 Science,Imadol,Z,9818684008,0
 4686,Aadesh Amatya,Teacher,+2 Science,Nil,Nil,9800000000,0
 6842,Faisal Ahmed,Admin,Admin,Nil,Nil,9800000001,2510
-3519,Sahil Awale,Student,+2 Science,Nil,?,0000000000,0

@@ -416,6 +416,9 @@ def data():
 
             finalarray.append(array)
 
+    for x in range(len(finalarray)):
+        del finalarray[x][-1]
+
     return render_template("data.html", li=finalarray)
 
 
@@ -447,6 +450,9 @@ def datadata():
             for x in finalarray:
                 if requiredDesignation == x[2]:
                     requiredList.append(x)
+
+            for x in range(len(finalarray)):
+                del requiredList[x][-1]
 
             return render_template("data.html", li=requiredList)
         else:
@@ -890,6 +896,43 @@ def canteenorder():
 @app.route("/canteenorder", methods=["GET", "POST"])
 def orderdata():
     if request.method == "POST":
+
+        token = request.form["token"]
+
+        with open('canteentoken.txt', 'r') as file:
+
+            finalarray = []
+            array = []
+            content = file.readlines()
+            code = []
+            x = 0
+
+            row = 0
+            for line in content:
+
+                row += 1
+                array = line.split(",")
+
+                array[-1] = array[-1].strip()
+
+                finalarray.append(array)
+
+            for i in range(len(finalarray)):
+                code.append(finalarray[i][0])
+
+        with open('canteentoken.txt', 'w') as file:
+            ctr = 1 
+            file.truncate(0)
+
+        with open('canteentoken.txt', 'a+') as file:
+
+            for x in range(len(finalarray)):
+                if token != code[x]:
+                    line = finalarray[x][0] + "," + \
+                        finalarray[x][1] + "," + finalarray[x][2] + "," + finalarray[x][3] + \
+                        "," + finalarray[x][4]
+                    file.write(line + "\n")
+
         return redirect(url_for("canteenorder"))
 
 
