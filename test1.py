@@ -2,7 +2,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 codeSize = (64, 64)
 busNoFont = ImageFont.truetype('arial.ttf', 50)
-font = ImageFont.truetype('arial.ttf', 11)
+font = ImageFont.truetype('arial.ttf', 12)
 
 
 def makeStudentID():
@@ -14,14 +14,14 @@ def makeStudentID():
 
     draw = ImageDraw.Draw(image)
 
-    draw.text((152, 95), 'H', (0, 0, 0), font=busNoFont)
-    draw.text((68, 155), name, (0, 0, 0),
-              font=ImageFont.truetype('arial.ttf', 14))
-    draw.text((108, 176), '3513', (0, 0, 0), font=font)
-    draw.text((122, 196), '+2 Science', (0, 0, 0), font=font)
-    draw.text((109, 219), 'Putalisadak', (0, 0, 0), font=font)
-    draw.text((89, 240), '9840030767', (0, 0, 0), font=font)
-    draw.text((104, 260), "August 2050", (0, 0, 0), font=font)
+    draw.text((180, 118), 'H', (0, 0, 0), font=busNoFont)
+    draw.text((76, 179), name, (0, 0, 0),
+              font=ImageFont.truetype('arial.ttf', 18))
+    draw.text((124, 209), '3513', (0, 0, 0), font=font)
+    draw.text((140, 235), '+2 Science', (0, 0, 0), font=font)
+    draw.text((125, 261), 'Putalisadak', (0, 0, 0), font=font)
+    draw.text((100, 287), '9840030767', (0, 0, 0), font=font)
+    draw.text((118, 313), "August 2050", (0, 0, 0), font=font)
 
     # image.paste('static/code.png', (59, 298))
 
@@ -61,7 +61,7 @@ def makeTeacherID():
 
     draw.text((105, 236), 'faculty', (0, 0, 0), font=font)
 
-    image.paste('static/code.png', (58, 254))
+    # image.paste('static/code.png', (58, 254))
 
     image.save('static/teacherSave.png')
 
@@ -71,7 +71,7 @@ def makeTeacherID():
 
 
 def makeAdminID():
-    name = 'Faisal Ahmed'
+    name = 'Faisal Ahvbskdbvsd'
     width = int
     height = int
 
@@ -81,24 +81,24 @@ def makeAdminID():
     draw = ImageDraw.Draw(image)
 
     if len(name) >= 18:
-        width = 88
-        height = 224
+        width = 100
+        height = 250
         draw.text((width, height), name, (0, 0, 0), font=font)
-    elif len(name) >= 15:
-        width = 91
-        height = 224
+    elif len(name) < 18 and len(name) >= 15:
+        width = 98
+        height = 250
         draw.text((width, height), name, (0, 0, 0), font=font)
-    elif len(name) >= 13:
-        width = 93
-        height = 224
+    elif len(name) < 15 and len(name) >= 13:
+        width = 97
+        height = 250
         draw.text((width, height), name, (0, 0, 0), font=font)
     else:
-        width = 102
-        height = 224
+        width = 114
+        height = 250
         draw.text((width, height), name, (0, 0, 0), font=font)
-    draw.text((100, 236), "[Admin Office]", (0, 0, 0), font=font)
+    draw.text((114, 263), "[Admin Office]", (0, 0, 0), font=font)
 
-    image.paste('static/code.png', (58, 254))
+    # image.paste('static/code.png', (58, 254))
 
     image.save('static/adminSave.png')
 
@@ -107,6 +107,6 @@ def makeAdminID():
     im1.save('static/printing.pdf')
 
 
-makeStudentID()
-# makeAdminID()
 # makeStudentID()
+makeAdminID()
+# makeTeacherID()

@@ -13,7 +13,7 @@ import log
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 backwardlines = list
-codeSize = (64, 64)
+codeSize = (96, 96)
 busNoFont = ImageFont.truetype('arial.ttf', 50)
 font = ImageFont.truetype('arial.ttf', 11)
 token = 500
@@ -30,14 +30,14 @@ def makeStudentID(name, code, qrcode, bno, faculty, bstop, cell):
 
     draw = ImageDraw.Draw(image)
 
-    draw.text((152, 95), bno, (0, 0, 0), font=busNoFont)
-    draw.text((68, 155), name, (0, 0, 0),
+    draw.text((180, 118), bno, (0, 0, 0), font=busNoFont)
+    draw.text((76, 179), name, (0, 0, 0),
               font=ImageFont.truetype('arial.ttf', 14))
-    draw.text((108, 176), code, (0, 0, 0), font=font)
-    draw.text((122, 196), faculty, (0, 0, 0), font=font)
-    draw.text((109, 219), bstop, (0, 0, 0), font=font)
-    draw.text((89, 240), cell, (0, 0, 0), font=font)
-    draw.text((104, 260), "August 2050", (0, 0, 0), font=font)
+    draw.text((124, 209), code, (0, 0, 0), font=font)
+    draw.text((140, 235), faculty, (0, 0, 0), font=font)
+    draw.text((125, 261), bstop, (0, 0, 0), font=font)
+    draw.text((100, 287), cell, (0, 0, 0), font=font)
+    draw.text((118, 313), "August 2050", (0, 0, 0), font=font)
 
     image.paste(qrcode, (59, 298))
 
@@ -57,23 +57,23 @@ def makeTeacherID(name, qrcode, faculty):
     draw = ImageDraw.Draw(image)
 
     if len(name) >= 18:
-        width = 88
-        height = 210
+        width = 100
+        height = 250
         draw.text((width, height), name, (0, 0, 0), font=font)
-    elif len(name) >= 15:
-        width = 91
-        height = 210
+    elif len(name) < 18 and len(name) >= 15:
+        width = 98
+        height = 250
         draw.text((width, height), name, (0, 0, 0), font=font)
-    elif len(name) >= 13:
-        width = 93
-        height = 210
+    elif len(name) < 15 and len(name) >= 13:
+        width = 97
+        height = 250
         draw.text((width, height), name, (0, 0, 0), font=font)
     else:
-        width = 102
-        height = 210
+        width = 114
+        height = 250
         draw.text((width, height), name, (0, 0, 0), font=font)
 
-    draw.text((105, 222), faculty, (0, 0, 0), font=font)
+    draw.text((114, 263), faculty, (0, 0, 0), font=font)
 
     image.paste(qrcode, (58, 254))
 
@@ -93,22 +93,22 @@ def makeAdminID(name, qrcode):
     draw = ImageDraw.Draw(image)
 
     if len(name) >= 18:
-        width = 88
-        height = 210
+        width = 100
+        height = 250
         draw.text((width, height), name, (0, 0, 0), font=font)
-    elif len(name) >= 15:
-        width = 91
-        height = 210
+    elif len(name) < 18 and len(name) >= 15:
+        width = 98
+        height = 250
         draw.text((width, height), name, (0, 0, 0), font=font)
-    elif len(name) >= 13:
-        width = 93
-        height = 210
+    elif len(name) < 15 and len(name) >= 13:
+        width = 97
+        height = 250
         draw.text((width, height), name, (0, 0, 0), font=font)
     else:
-        width = 102
-        height = 210
+        width = 114
+        height = 250
         draw.text((width, height), name, (0, 0, 0), font=font)
-    draw.text((100, 222), "[Admin Office]", (0, 0, 0), font=font)
+    draw.text((114, 263), "[Admin Office]", (0, 0, 0), font=font)
 
     image.paste(qrcode, (58, 254))
 
