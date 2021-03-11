@@ -1,4 +1,4 @@
-3513,Aashish Kadel,Student,+2 Science,Putalisadak,H,9840030767,1330
+3513,Aashish Kadel,Student,+2 Science,Putalisadak,H,9840030767,1810
 3519,Lijan Shrestha,Student,+2 Science,Tahachal,A,9841000000,0
 3613,Mokshyak Amatya,Council,+2 Science,Imadol,Z,9818684008,0
 4686,Aadesh Amatya,Teacher,+2 Science,Nil,Nil,9800000000,0

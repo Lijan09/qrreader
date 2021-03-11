@@ -851,9 +851,27 @@ def canteenorder():
 
             finalarray.append(array)
 
-    
+    finalorder = []
 
-    return render_template("canteenorder.html", li=finalarray)
+    for x in range(len(finalarray)):
+
+        orders = []
+
+        orders.append(finalarray[x][0])
+        line = "Momo x" + finalarray[x][1] + ", " + "Chowmein x" + finalarray[x][2] + \
+            ", " + "Chilli Fries x" + \
+            finalarray[x][3] + ", " + "Khana Set x" + finalarray[x][4]
+        orders.append(line)
+
+        finalorder.append(orders)
+
+    return render_template("canteenorder.html", li=finalorder)
+
+
+@app.route("/canteenorder", methods=["GET", "POST"])
+def orderdata():
+    if request.method == "POST":
+        return redirect(url_for("canteenorder"))
 
 
 if __name__ == "__main__":

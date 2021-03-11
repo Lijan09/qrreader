@@ -138,15 +138,21 @@
 
 {% block content %}
 <h1 class="welcome"> Your Order </h1><br>
-<form action='/register' method="post">
+
+<form action='/canteenorder' method="post">
     <div class="frame">
         <table>
             <tr>
-                <th width="16%">Token</th>
-                <th width="38%">Food Item</th>
+                <th width="1%">Order</th>
+                <th width="1%">Token</th>
+                <th width="20%">Food Item</th>
             </tr>
             {% for x in li %}
             <tr>
+                <td>
+                    <label class="order"> <input type="checkbox" name="token" value=<var>{{token}}</var>
+                        <span class="checkmark"></span></label>
+                </td>
                 {% for item in x %}
                 <td>{{item}}</td>
                 {% endfor %}
