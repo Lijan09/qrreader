@@ -13,7 +13,7 @@ import log
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 backwardlines = list
-codeSize = (96, 96)
+codeSize = (76, 76)
 busNoFont = ImageFont.truetype('arial.ttf', 50)
 font = ImageFont.truetype('arial.ttf', 11)
 token = 500
@@ -39,7 +39,7 @@ def makeStudentID(name, code, qrcode, bno, faculty, bstop, cell):
     draw.text((100, 287), cell, (0, 0, 0), font=font)
     draw.text((118, 313), "August 2050", (0, 0, 0), font=font)
 
-    image.paste(qrcode, (59, 298))
+    image.paste(qrcode, (74, 326))
 
     image.save('static/studentSave.png')
 
@@ -75,7 +75,7 @@ def makeTeacherID(name, qrcode, faculty):
 
     draw.text((114, 263), faculty, (0, 0, 0), font=font)
 
-    image.paste(qrcode, (58, 254))
+    image.paste(qrcode, (74, 281))
 
     image.save('static/teacherSave.png')
 
@@ -110,7 +110,7 @@ def makeAdminID(name, qrcode):
         draw.text((width, height), name, (0, 0, 0), font=font)
     draw.text((114, 263), "[Admin Office]", (0, 0, 0), font=font)
 
-    image.paste(qrcode, (58, 254))
+    image.paste(qrcode, (74, 281))
 
     image.save('static/adminSave.png')
 
@@ -921,7 +921,7 @@ def orderdata():
                 code.append(finalarray[i][0])
 
         with open('canteentoken.txt', 'w') as file:
-            ctr = 1 
+            ctr = 1
             file.truncate(0)
 
         with open('canteentoken.txt', 'a+') as file:
