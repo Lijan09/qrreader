@@ -145,16 +145,15 @@
         outline: none;
     }
 
-.lijan{
-  background-color: #40c9a2;
-  color: #ffffff;
-  font-size: 20px;
-  padding-left: 50px;
-  padding-top: 40px;
-  padding-bottom: 23px;
-  margin: 8px 0;
-  font-weight: bold;
-}
+    .lijan {
+        background-color: #40c9a2;
+        color: #ffffff;
+        font-size: 20px;
+        padding-left: 50px;
+        padding-top: 40px;
+        padding-bottom: 23px;
+        margin: 8px 0;
+        font-weight: bold;
     }
 </style>
 {% endblock %}
@@ -177,19 +176,11 @@
             </tr>
             {% endfor %}
         </table>
-<<<<<<< HEAD
-        <div style="position:absolute; left:1100px; top:600px;">
+        <div style="position:absolute; left:1300px; top:600px;">
             <input type="submit" class="button submit" value="Dispatched">
         </div>
-        <label class="lijan" for="token" style="position:absolute; left:870px; top:570px;">Token:</label>
-        <input type="number" min=500 max=999 id="token" name="token" style="position:absolute; left:990px; top:600px;">
-=======
-    </div>
-    <div style="position:absolute; left:1100px; top:600px;">
-        <label for="token">Token:</label>
-        <input type="number" min=500 max=999 id="token" name="token" autocomplete=off>
-        <input type="submit" class="button submit" value="Confirm">
->>>>>>> bfe306a5a052bb42a091743f09ea6c3538efe0f1
+        <label class="lijan" for="token" style="position:absolute; left:1070px; top:570px;">Token:</label>
+        <input type="number" min=500 max=999 id="token" name="token" style="position:absolute; left:1190px; top:600px;">
     </div>
 </form>
 {% endblock %}

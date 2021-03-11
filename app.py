@@ -304,7 +304,7 @@ def login():
 
     log.logdata(qrcodeReader.requiredCode)
 
-    return render_template("login.html", time=log.time, code=log.code, designation=log.designation, name=log.name, faculty=log.faculty, cell=log.cell, bno=log.bno, bstop=log.bstop)
+    return render_template("login.html", time=log.time, code=log.code, designation=log.designation, name=log.name, faculty=log.faculty, cell=log.cell, bno=log.bno, bstop=log.bstop, fee=log.fee)
 
 
 @app.route("/adminprint")

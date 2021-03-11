@@ -7,10 +7,11 @@ bstop = ""
 bno = ""
 attendance = ""
 cell = ""
+fee = ""
 
 
 def logdata(givenCode):
-    global name, designation, time, code, faculty, bstop, bno, cell, attendance
+    global name, designation, time, code, faculty, bstop, bno, cell, attendance, fee
 
     with open('log.txt', 'r') as textfile:
 
@@ -69,6 +70,7 @@ def logdata(givenCode):
                 bstop = finalarray[x][4]
                 bno = finalarray[x][5]
                 cell = finalarray[x][6]
+                fee = finalarray[x][7]
                 break
     
     if time == "":
@@ -88,4 +90,5 @@ faculty = faculty
 bstop = bstop
 bno = bno
 cell = cell
+fee = fee
 attendance = attendance
