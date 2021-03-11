@@ -30,14 +30,14 @@ def makeStudentID(name, code, qrcode, bno, faculty, bstop, cell):
 
     draw = ImageDraw.Draw(image)
 
-    draw.text((156, 102), bno, (0, 0, 0), font=busNoFont)
-    draw.text((64, 165), name, (0, 0, 0),
+    draw.text((152, 95), bno, (0, 0, 0), font=busNoFont)
+    draw.text((68, 155), name, (0, 0, 0),
               font=ImageFont.truetype('arial.ttf', 14))
-    draw.text((108, 188), code, (0, 0, 0), font=font)
-    draw.text((122, 212), faculty, (0, 0, 0), font=font)
-    draw.text((109, 235), bstop, (0, 0, 0), font=font)
-    draw.text((87, 258), cell, (0, 0, 0), font=font)
-    draw.text((102, 282), "August 2050", (0, 0, 0), font=font)
+    draw.text((108, 176), code, (0, 0, 0), font=font)
+    draw.text((122, 196), faculty, (0, 0, 0), font=font)
+    draw.text((109, 219), bstop, (0, 0, 0), font=font)
+    draw.text((89, 240), cell, (0, 0, 0), font=font)
+    draw.text((104, 260), "August 2050", (0, 0, 0), font=font)
 
     image.paste(qrcode, (59, 298))
 
@@ -59,22 +59,22 @@ def makeTeacherID(name, qrcode, faculty):
 
     if len(name) >= 18:
         width = 88
-        height = 224
+        height = 210
         draw.text((width, height), name, (0, 0, 0), font=font)
     elif len(name) >= 15:
         width = 91
-        height = 224
+        height = 210
         draw.text((width, height), name, (0, 0, 0), font=font)
     elif len(name) >= 13:
         width = 93
-        height = 224
+        height = 210
         draw.text((width, height), name, (0, 0, 0), font=font)
     else:
         width = 102
-        height = 224
+        height = 210
         draw.text((width, height), name, (0, 0, 0), font=font)
 
-    draw.text((105, 236), faculty, (0, 0, 0), font=font)
+    draw.text((105, 222), faculty, (0, 0, 0), font=font)
 
     image.paste(qrcode, (58, 254))
 
@@ -95,21 +95,21 @@ def makeAdminID(name, qrcode):
 
     if len(name) >= 18:
         width = 88
-        height = 224
+        height = 210
         draw.text((width, height), name, (0, 0, 0), font=font)
     elif len(name) >= 15:
         width = 91
-        height = 224
+        height = 210
         draw.text((width, height), name, (0, 0, 0), font=font)
     elif len(name) >= 13:
         width = 93
-        height = 224
+        height = 210
         draw.text((width, height), name, (0, 0, 0), font=font)
     else:
         width = 102
-        height = 224
+        height = 210
         draw.text((width, height), name, (0, 0, 0), font=font)
-    draw.text((100, 236), "[Admin Office]", (0, 0, 0), font=font)
+    draw.text((100, 222), "[Admin Office]", (0, 0, 0), font=font)
 
     image.paste(qrcode, (58, 254))
 
@@ -704,7 +704,6 @@ def editdata():
         else:
             edit.editcode(code, name, designation, faculty, bstop, bno, cell)
             return redirect(url_for("edited"))
-
 
 @app.route("/delete")
 def delete():
